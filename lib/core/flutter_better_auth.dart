@@ -19,6 +19,11 @@ class FlutterBetterAuth {
   static late String baseUrl;
   static late final Dio dioClient;
   static late final StorageInterface? storage;
+  
+  /// Whether to use expo authorization proxy for OAuth flows.
+  /// This is required for mobile apps to properly handle state validation.
+  /// Defaults to true on mobile platforms.
+  static bool useAuthorizationProxy = !kIsWeb;
 
   FlutterBetterAuth._internal() {
     _client = BetterAuthClient(dioClient, baseUrl: baseUrl);
@@ -28,9 +33,15 @@ class FlutterBetterAuth {
     required String url,
     Dio? dio,
     StorageInterface? store,
+    bool? useProxy,
   }) async {
     if (_initialized) return;
     baseUrl = url;
+    
+    // Override default proxy setting if provided
+    if (useProxy != null) {
+      useAuthorizationProxy = useProxy;
+    }
     if (store == null && !kIsWeb) {
       await HiveStorage.init();
       storage = HiveStorage();

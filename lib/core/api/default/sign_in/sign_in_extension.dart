@@ -70,8 +70,21 @@ extension SignInSocialExtension on SignInBetterAuth {
       return res;
     }
     if (res.data != null && callbackUrlScheme != null) {
+      // Determine which URL to use for authentication
+      String authUrl = res.data!.url;
+      
+      // Use expo authorization proxy on mobile to properly set state cookie
+      if (FlutterBetterAuth.useAuthorizationProxy && !kIsWeb) {
+        final proxyUrl = Uri.parse('${FlutterBetterAuth.baseUrl}/expo-authorization-proxy').replace(
+          queryParameters: {
+            'authorizationURL': res.data!.url,
+          },
+        );
+        authUrl = proxyUrl.toString();
+      }
+      
       final result = await FlutterWebAuth2.authenticate(
-        url: res.data!.url,
+        url: authUrl,
         callbackUrlScheme: callbackUrlScheme,
       );
       final url = Uri.tryParse(result);
