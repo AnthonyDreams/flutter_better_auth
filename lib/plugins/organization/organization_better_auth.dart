@@ -9,8 +9,8 @@ import 'models/invitation_response/invitation_response.dart';
 import 'models/invitations_response/invitations_response.dart';
 import 'models/member_response/member_response.dart';
 import 'models/members_response/members_response.dart';
+import 'models/organization/organization.dart';
 import 'models/organization_response/organization_response.dart';
-import 'models/organizations_response/organizations_response.dart';
 import 'models/permission_response/permission_response.dart';
 
 part 'organization_better_auth.g.dart';
@@ -37,7 +37,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @GET('/organization/list')
-  Future<Result<OrganizationsResponse>> listOrganizations();
+  Future<Result<List<Organization>>> listOrganizations();
 
   @POST('/organization/invite-member')
   Future<Result<InvitationResponse>> inviteMember({
