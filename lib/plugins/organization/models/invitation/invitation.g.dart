@@ -10,17 +10,14 @@ _Invitation _$InvitationFromJson(Map<String, dynamic> json) => _Invitation(
   id: json['id'] as String,
   organizationId: json['organizationId'] as String,
   email: json['email'] as String,
-  role: json['role'] as String?,
-  status: json['status'] as String?,
-  expiresAt:
-      json['expiresAt'] == null
-          ? null
-          : DateTime.parse(json['expiresAt'] as String),
-  createdAt:
-      json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
-  inviterId: json['inviterId'] as String?,
+  role: json['role'] as String,
+  status: json['status'] as String,
+  expiresAt: json['expiresAt'] as String?,
+  createdAt: json['createdAt'] as String?,
+  inviterId: json['inviterId'] as String,
+  organizationName: json['organizationName'] as String?,
+  organizationSlug: json['organizationSlug'] as String?,
+  inviterEmail: json['inviterEmail'] as String?,
 );
 
 Map<String, dynamic> _$InvitationToJson(_Invitation instance) =>
@@ -30,7 +27,10 @@ Map<String, dynamic> _$InvitationToJson(_Invitation instance) =>
       'email': instance.email,
       'role': instance.role,
       'status': instance.status,
-      'expiresAt': instance.expiresAt?.toIso8601String(),
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'expiresAt': instance.expiresAt,
+      'createdAt': instance.createdAt,
       'inviterId': instance.inviterId,
+      'organizationName': instance.organizationName,
+      'organizationSlug': instance.organizationSlug,
+      'inviterEmail': instance.inviterEmail,
     };

@@ -9,11 +9,14 @@ abstract class Invitation with _$Invitation {
     required String id,
     required String organizationId,
     required String email,
-    String? role,
-    String? status,
-    DateTime? expiresAt,
-    DateTime? createdAt,
-    String? inviterId,
+    required String role,
+    required String status,
+    String? expiresAt,
+    String? createdAt,
+    required String inviterId,
+    String? organizationName,
+    String? organizationSlug,
+    String? inviterEmail,
   }) = _Invitation;
 
   factory Invitation.fromJson(Map<String, dynamic> json) =>

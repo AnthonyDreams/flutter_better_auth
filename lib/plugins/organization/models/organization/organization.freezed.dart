@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Organization {
 
- String get id; String get name; String? get slug; String? get logo; DateTime? get createdAt; Map<String, dynamic>? get metadata;
+ String? get id; String get name; String get slug; String? get logo; String? get createdAt; String? get metadata;
 /// Create a copy of Organization
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,12 +28,12 @@ $OrganizationCopyWith<Organization> get copyWith => _$OrganizationCopyWithImpl<O
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Organization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other.metadata, metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Organization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.metadata, metadata) || other.metadata == metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,slug,logo,createdAt,const DeepCollectionEquality().hash(metadata));
+int get hashCode => Object.hash(runtimeType,id,name,slug,logo,createdAt,metadata);
 
 @override
 String toString() {
@@ -48,7 +48,7 @@ abstract mixin class $OrganizationCopyWith<$Res>  {
   factory $OrganizationCopyWith(Organization value, $Res Function(Organization) _then) = _$OrganizationCopyWithImpl;
 @useResult
 $Res call({
- String id, String name, String? slug, String? logo, DateTime? createdAt, Map<String, dynamic>? metadata
+ String? id, String name, String slug, String? logo, String? createdAt, String? metadata
 });
 
 
@@ -65,15 +65,15 @@ class _$OrganizationCopyWithImpl<$Res>
 
 /// Create a copy of Organization
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? slug = freezed,Object? logo = freezed,Object? createdAt = freezed,Object? metadata = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = null,Object? slug = null,Object? logo = freezed,Object? createdAt = freezed,Object? metadata = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,slug: freezed == slug ? _self.slug : slug // ignore: cast_nullable_to_non_nullable
-as String?,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,slug: null == slug ? _self.slug : slug // ignore: cast_nullable_to_non_nullable
+as String,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -158,7 +158,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String name,  String? slug,  String? logo,  DateTime? createdAt,  Map<String, dynamic>? metadata)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  String? logo,  String? createdAt,  String? metadata)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Organization() when $default != null:
 return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.metadata);case _:
@@ -179,7 +179,7 @@ return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String name,  String? slug,  String? logo,  DateTime? createdAt,  Map<String, dynamic>? metadata)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  String? logo,  String? createdAt,  String? metadata)  $default,) {final _that = this;
 switch (_that) {
 case _Organization():
 return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.metadata);case _:
@@ -199,7 +199,7 @@ return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String name,  String? slug,  String? logo,  DateTime? createdAt,  Map<String, dynamic>? metadata)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String name,  String slug,  String? logo,  String? createdAt,  String? metadata)?  $default,) {final _that = this;
 switch (_that) {
 case _Organization() when $default != null:
 return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.metadata);case _:
@@ -214,23 +214,15 @@ return $default(_that.id,_that.name,_that.slug,_that.logo,_that.createdAt,_that.
 @JsonSerializable()
 
 class _Organization implements Organization {
-  const _Organization({required this.id, required this.name, this.slug, this.logo, this.createdAt, final  Map<String, dynamic>? metadata}): _metadata = metadata;
+  const _Organization({this.id, required this.name, required this.slug, this.logo, this.createdAt, this.metadata});
   factory _Organization.fromJson(Map<String, dynamic> json) => _$OrganizationFromJson(json);
 
-@override final  String id;
+@override final  String? id;
 @override final  String name;
-@override final  String? slug;
+@override final  String slug;
 @override final  String? logo;
-@override final  DateTime? createdAt;
- final  Map<String, dynamic>? _metadata;
-@override Map<String, dynamic>? get metadata {
-  final value = _metadata;
-  if (value == null) return null;
-  if (_metadata is EqualUnmodifiableMapView) return _metadata;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
+@override final  String? createdAt;
+@override final  String? metadata;
 
 /// Create a copy of Organization
 /// with the given fields replaced by the non-null parameter values.
@@ -245,12 +237,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Organization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other._metadata, _metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Organization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.metadata, metadata) || other.metadata == metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,slug,logo,createdAt,const DeepCollectionEquality().hash(_metadata));
+int get hashCode => Object.hash(runtimeType,id,name,slug,logo,createdAt,metadata);
 
 @override
 String toString() {
@@ -265,7 +257,7 @@ abstract mixin class _$OrganizationCopyWith<$Res> implements $OrganizationCopyWi
   factory _$OrganizationCopyWith(_Organization value, $Res Function(_Organization) _then) = __$OrganizationCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String name, String? slug, String? logo, DateTime? createdAt, Map<String, dynamic>? metadata
+ String? id, String name, String slug, String? logo, String? createdAt, String? metadata
 });
 
 
@@ -282,15 +274,15 @@ class __$OrganizationCopyWithImpl<$Res>
 
 /// Create a copy of Organization
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? slug = freezed,Object? logo = freezed,Object? createdAt = freezed,Object? metadata = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = null,Object? slug = null,Object? logo = freezed,Object? createdAt = freezed,Object? metadata = freezed,}) {
   return _then(_Organization(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,slug: freezed == slug ? _self.slug : slug // ignore: cast_nullable_to_non_nullable
-as String?,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String?,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String,slug: null == slug ? _self.slug : slug // ignore: cast_nullable_to_non_nullable
+as String,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
 as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

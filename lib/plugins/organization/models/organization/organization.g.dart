@@ -8,15 +8,12 @@ part of 'organization.dart';
 
 _Organization _$OrganizationFromJson(Map<String, dynamic> json) =>
     _Organization(
-      id: json['id'] as String,
+      id: json['id'] as String?,
       name: json['name'] as String,
-      slug: json['slug'] as String?,
+      slug: json['slug'] as String,
       logo: json['logo'] as String?,
-      createdAt:
-          json['createdAt'] == null
-              ? null
-              : DateTime.parse(json['createdAt'] as String),
-      metadata: json['metadata'] as Map<String, dynamic>?,
+      createdAt: json['createdAt'] as String?,
+      metadata: json['metadata'] as String?,
     );
 
 Map<String, dynamic> _$OrganizationToJson(_Organization instance) =>
@@ -25,6 +22,6 @@ Map<String, dynamic> _$OrganizationToJson(_Organization instance) =>
       'name': instance.name,
       'slug': instance.slug,
       'logo': instance.logo,
-      'createdAt': instance.createdAt?.toIso8601String(),
+      'createdAt': instance.createdAt,
       'metadata': instance.metadata,
     };

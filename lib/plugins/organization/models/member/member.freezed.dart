@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Member {
 
- String get id; String get organizationId; String get userId; String? get role; DateTime? get createdAt; User? get user;
+ String get id; String get organizationId; String get userId; String get role; String? get createdAt; User? get user;
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MemberCopyWith<$Res>  {
   factory $MemberCopyWith(Member value, $Res Function(Member) _then) = _$MemberCopyWithImpl;
 @useResult
 $Res call({
- String id, String organizationId, String userId, String? role, DateTime? createdAt, User? user
+ String id, String organizationId, String userId, String role, String? createdAt, User? user
 });
 
 
@@ -65,14 +65,14 @@ class _$MemberCopyWithImpl<$Res>
 
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? organizationId = null,Object? userId = null,Object? role = freezed,Object? createdAt = freezed,Object? user = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? organizationId = null,Object? userId = null,Object? role = null,Object? createdAt = freezed,Object? user = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,organizationId: null == organizationId ? _self.organizationId : organizationId // ignore: cast_nullable_to_non_nullable
 as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as User?,
   ));
 }
@@ -170,7 +170,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String organizationId,  String userId,  String? role,  DateTime? createdAt,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String organizationId,  String userId,  String role,  String? createdAt,  User? user)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Member() when $default != null:
 return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.createdAt,_that.user);case _:
@@ -191,7 +191,7 @@ return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.crea
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String organizationId,  String userId,  String? role,  DateTime? createdAt,  User? user)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String organizationId,  String userId,  String role,  String? createdAt,  User? user)  $default,) {final _that = this;
 switch (_that) {
 case _Member():
 return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.createdAt,_that.user);case _:
@@ -211,7 +211,7 @@ return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.crea
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String organizationId,  String userId,  String? role,  DateTime? createdAt,  User? user)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String organizationId,  String userId,  String role,  String? createdAt,  User? user)?  $default,) {final _that = this;
 switch (_that) {
 case _Member() when $default != null:
 return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.createdAt,_that.user);case _:
@@ -226,14 +226,14 @@ return $default(_that.id,_that.organizationId,_that.userId,_that.role,_that.crea
 @JsonSerializable()
 
 class _Member implements Member {
-  const _Member({required this.id, required this.organizationId, required this.userId, this.role, this.createdAt, this.user});
+  const _Member({required this.id, required this.organizationId, required this.userId, required this.role, this.createdAt, this.user});
   factory _Member.fromJson(Map<String, dynamic> json) => _$MemberFromJson(json);
 
 @override final  String id;
 @override final  String organizationId;
 @override final  String userId;
-@override final  String? role;
-@override final  DateTime? createdAt;
+@override final  String role;
+@override final  String? createdAt;
 @override final  User? user;
 
 /// Create a copy of Member
@@ -269,7 +269,7 @@ abstract mixin class _$MemberCopyWith<$Res> implements $MemberCopyWith<$Res> {
   factory _$MemberCopyWith(_Member value, $Res Function(_Member) _then) = __$MemberCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String organizationId, String userId, String? role, DateTime? createdAt, User? user
+ String id, String organizationId, String userId, String role, String? createdAt, User? user
 });
 
 
@@ -286,14 +286,14 @@ class __$MemberCopyWithImpl<$Res>
 
 /// Create a copy of Member
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? organizationId = null,Object? userId = null,Object? role = freezed,Object? createdAt = freezed,Object? user = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? organizationId = null,Object? userId = null,Object? role = null,Object? createdAt = freezed,Object? user = freezed,}) {
   return _then(_Member(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,organizationId: null == organizationId ? _self.organizationId : organizationId // ignore: cast_nullable_to_non_nullable
 as String,userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,role: freezed == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
-as String?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
+as String,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String?,user: freezed == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
 as User?,
   ));
 }

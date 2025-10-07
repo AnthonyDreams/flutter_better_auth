@@ -10,8 +10,8 @@ abstract class Member with _$Member {
     required String id,
     required String organizationId,
     required String userId,
-    String? role,
-    DateTime? createdAt,
+    required String role,
+    String? createdAt,
     User? user,
   }) = _Member;
 

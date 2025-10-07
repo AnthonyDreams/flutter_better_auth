@@ -10,11 +10,8 @@ _Member _$MemberFromJson(Map<String, dynamic> json) => _Member(
   id: json['id'] as String,
   organizationId: json['organizationId'] as String,
   userId: json['userId'] as String,
-  role: json['role'] as String?,
-  createdAt:
-      json['createdAt'] == null
-          ? null
-          : DateTime.parse(json['createdAt'] as String),
+  role: json['role'] as String,
+  createdAt: json['createdAt'] as String?,
   user:
       json['user'] == null
           ? null
@@ -26,6 +23,6 @@ Map<String, dynamic> _$MemberToJson(_Member instance) => <String, dynamic>{
   'organizationId': instance.organizationId,
   'userId': instance.userId,
   'role': instance.role,
-  'createdAt': instance.createdAt?.toIso8601String(),
+  'createdAt': instance.createdAt,
   'user': instance.user?.toJson(),
 };

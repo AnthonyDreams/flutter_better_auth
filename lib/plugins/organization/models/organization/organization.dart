@@ -6,12 +6,12 @@ part 'organization.g.dart';
 @freezed
 abstract class Organization with _$Organization {
   const factory Organization({
-    required String id,
+    String? id,
     required String name,
-    String? slug,
+    required String slug,
     String? logo,
-    DateTime? createdAt,
-    Map<String, dynamic>? metadata,
+    String? createdAt,
+    String? metadata,
   }) = _Organization;
 
   factory Organization.fromJson(Map<String, dynamic> json) =>
