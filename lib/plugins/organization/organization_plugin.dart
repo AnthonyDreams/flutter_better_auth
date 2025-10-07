@@ -4,6 +4,7 @@ export 'models/organization/organization.dart';
 export 'models/member/member.dart';
 export 'models/invitation/invitation.dart';
 export 'models/organization_response/organization_response.dart';
+export 'models/organizations_response/organizations_response.dart';
 export 'models/member_response/member_response.dart';
 export 'models/members_response/members_response.dart';
 export 'models/invitation_response/invitation_response.dart';

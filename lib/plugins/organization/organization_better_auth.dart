@@ -10,6 +10,7 @@ import 'models/invitations_response/invitations_response.dart';
 import 'models/member_response/member_response.dart';
 import 'models/members_response/members_response.dart';
 import 'models/organization_response/organization_response.dart';
+import 'models/organizations_response/organizations_response.dart';
 import 'models/permission_response/permission_response.dart';
 
 part 'organization_better_auth.g.dart';
@@ -34,6 +35,9 @@ abstract class OrganizationBetterAuth {
   Future<Result<CheckSlugResponse>> checkSlug({
     @BodyExtra('slug') required String slug,
   });
+
+  @GET('/organization/list')
+  Future<Result<OrganizationsResponse>> listOrganizations();
 
   @POST('/organization/invite-member')
   Future<Result<InvitationResponse>> inviteMember({
