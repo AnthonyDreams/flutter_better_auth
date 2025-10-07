@@ -26,7 +26,7 @@ abstract class OrganizationBetterAuth {
   @POST('/organization/create')
   Future<Result<OrganizationResponse>> createOrganization({
     @BodyExtra('name') required String name,
-    @BodyExtra('slug') String? slug,
+    @BodyExtra('slug') required String slug,
     @BodyExtra('logo') String? logo,
     @BodyExtra('metadata') Map<String, dynamic>? metadata,
   });

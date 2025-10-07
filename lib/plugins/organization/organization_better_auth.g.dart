@@ -19,7 +19,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
 
   Future<HttpResponse<OrganizationResponse>> _createOrganization({
     required String name,
-    String? slug,
+    required String slug,
     String? logo,
     Map<String, dynamic>? metadata,
   }) async {
@@ -59,7 +59,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   @override
   Future<Result<OrganizationResponse>> createOrganization({
     required String name,
-    String? slug,
+    required String slug,
     String? logo,
     Map<String, dynamic>? metadata,
   }) {

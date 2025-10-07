@@ -9,8 +9,8 @@ abstract class Organization with _$Organization {
     String? id,
     required String name,
     required String slug,
+    required DateTime createdAt,
     String? logo,
-    String? createdAt,
     String? metadata,
   }) = _Organization;
 
