@@ -2,6 +2,8 @@
 
 part of 'better_auth_client.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -465,10 +467,9 @@ class _BetterAuthClient implements BetterAuthClient {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Session> _value;
     try {
-      _value =
-          _result.data!
-              .map((dynamic i) => Session.fromJson(i as Map<String, dynamic>))
-              .toList();
+      _value = _result.data!
+          .map((dynamic i) => Session.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -629,3 +630,5 @@ class _BetterAuthClient implements BetterAuthClient {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

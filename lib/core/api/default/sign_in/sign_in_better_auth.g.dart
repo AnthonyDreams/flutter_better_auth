@@ -2,6 +2,8 @@
 
 part of 'sign_in_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -260,3 +262,5 @@ class _SignInBetterAuth implements SignInBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

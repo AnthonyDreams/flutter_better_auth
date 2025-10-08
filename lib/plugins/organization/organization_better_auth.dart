@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_better_auth/plugins/organization/models/full_organization/full_organization.dart';
 import 'package:flutter_better_auth/plugins/organization/models/full_organization_wrapper/full_organization_response.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -41,7 +42,7 @@ abstract class OrganizationBetterAuth {
   Future<Result<List<Organization>>> listOrganizations();
 
   @GET('/organization/get-full-organization')
-  Future<Result<FullOrganizationResponse>> getFullOrganization();
+  Future<Result<FullOrganization?>> getFullOrganization();
 
   @POST('/organization/invite-member')
   Future<Result<InvitationResponse>> inviteMember({

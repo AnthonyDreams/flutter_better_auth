@@ -12,14 +12,12 @@ _FullOrganization _$FullOrganizationFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       slug: json['slug'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
-      members:
-          (json['members'] as List<dynamic>)
-              .map((e) => Member.fromJson(e as Map<String, dynamic>))
-              .toList(),
-      invitations:
-          (json['invitations'] as List<dynamic>)
-              .map((e) => Invitation.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      members: (json['members'] as List<dynamic>)
+          .map((e) => Member.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      invitations: (json['invitations'] as List<dynamic>)
+          .map((e) => Invitation.fromJson(e as Map<String, dynamic>))
+          .toList(),
       logo: json['logo'] as String?,
       metadata: json['metadata'] as String?,
     );

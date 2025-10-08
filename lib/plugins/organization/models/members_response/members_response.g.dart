@@ -8,10 +8,9 @@ part of 'members_response.dart';
 
 _MembersResponse _$MembersResponseFromJson(Map<String, dynamic> json) =>
     _MembersResponse(
-      members:
-          (json['members'] as List<dynamic>)
-              .map((e) => Member.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      members: (json['members'] as List<dynamic>)
+          .map((e) => Member.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$MembersResponseToJson(_MembersResponse instance) =>

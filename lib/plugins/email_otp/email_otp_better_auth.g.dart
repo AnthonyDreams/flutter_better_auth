@@ -2,6 +2,8 @@
 
 part of 'email_otp_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -246,3 +248,5 @@ class _EmailOtpBetterAuth implements EmailOtpBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

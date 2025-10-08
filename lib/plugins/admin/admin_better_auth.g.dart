@@ -2,6 +2,8 @@
 
 part of 'admin_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -529,3 +531,5 @@ class _AdminBetterAuth implements AdminBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

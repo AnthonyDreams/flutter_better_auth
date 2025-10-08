@@ -9,10 +9,9 @@ part of 'organizations_response.dart';
 _OrganizationsResponse _$OrganizationsResponseFromJson(
   Map<String, dynamic> json,
 ) => _OrganizationsResponse(
-  organizations:
-      (json['organizations'] as List<dynamic>)
-          .map((e) => Organization.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  organizations: (json['organizations'] as List<dynamic>)
+      .map((e) => Organization.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$OrganizationsResponseToJson(

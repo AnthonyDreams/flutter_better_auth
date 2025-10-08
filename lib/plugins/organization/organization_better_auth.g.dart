@@ -2,6 +2,8 @@
 
 part of 'organization_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -127,12 +129,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<Organization> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) => Organization.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map((dynamic i) => Organization.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -148,12 +147,12 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<FullOrganizationResponse>> _getFullOrganization() async {
+  Future<HttpResponse<FullOrganization?>> _getFullOrganization() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Result<FullOrganizationResponse>>(
+    final _options = _setStreamType<Result<FullOrganization?>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -163,10 +162,12 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late FullOrganizationResponse _value;
+    final _result = await _dio.fetch<Map<String, dynamic>?>(_options);
+    late FullOrganization? _value;
     try {
-      _value = FullOrganizationResponse.fromJson(_result.data!);
+      _value = _result.data == null
+          ? null
+          : FullOrganization.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -176,8 +177,8 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<FullOrganizationResponse>> getFullOrganization() {
-    return BetterAuthCallAdapter<FullOrganizationResponse>().adapt(
+  Future<Result<FullOrganization?>> getFullOrganization() {
+    return BetterAuthCallAdapter<FullOrganization?>().adapt(
       () => _getFullOrganization(),
     );
   }
@@ -660,3 +661,5 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

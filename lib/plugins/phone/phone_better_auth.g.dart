@@ -2,6 +2,8 @@
 
 part of 'phone_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -228,3 +230,5 @@ class _PhoneBetterAuth implements PhoneBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

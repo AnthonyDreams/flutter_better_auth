@@ -2,6 +2,8 @@
 
 part of 'jwt_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -108,3 +110,5 @@ class _JwtBetterAuth implements JwtBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

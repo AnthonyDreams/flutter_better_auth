@@ -2,6 +2,8 @@
 
 part of 'social_better_auth.dart';
 
+// dart format off
+
 // **************************************************************************
 // RetrofitGenerator
 // **************************************************************************
@@ -127,13 +129,12 @@ class _SocialBetterAuth implements SocialBetterAuth {
     final _result = await _dio.fetch<List<dynamic>>(_options);
     late List<SocialAccountResponse> _value;
     try {
-      _value =
-          _result.data!
-              .map(
-                (dynamic i) =>
-                    SocialAccountResponse.fromJson(i as Map<String, dynamic>),
-              )
-              .toList();
+      _value = _result.data!
+          .map(
+            (dynamic i) =>
+                SocialAccountResponse.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -325,3 +326,5 @@ class _SocialBetterAuth implements SocialBetterAuth {
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
+
+// dart format on

@@ -8,10 +8,9 @@ part of 'invitations_response.dart';
 
 _InvitationsResponse _$InvitationsResponseFromJson(Map<String, dynamic> json) =>
     _InvitationsResponse(
-      invitations:
-          (json['invitations'] as List<dynamic>)
-              .map((e) => Invitation.fromJson(e as Map<String, dynamic>))
-              .toList(),
+      invitations: (json['invitations'] as List<dynamic>)
+          .map((e) => Invitation.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$InvitationsResponseToJson(
