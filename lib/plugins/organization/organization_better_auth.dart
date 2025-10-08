@@ -5,6 +5,7 @@ import '../../core/api/adapter.dart';
 import '../../core/api/models/result/result.dart';
 import '../../core/api/models/result/success_response.dart';
 import 'models/check_slug_response/check_slug_response.dart';
+import 'models/full_organization/full_organization.dart';
 import 'models/invitation_response/invitation_response.dart';
 import 'models/invitations_response/invitations_response.dart';
 import 'models/member_response/member_response.dart';
@@ -40,7 +41,7 @@ abstract class OrganizationBetterAuth {
   Future<Result<List<Organization>>> listOrganizations();
 
   @GET('/organization/get-full-organization')
-  Future<Result<Organization>> getFullOrganization();
+  Future<Result<FullOrganization>> getFullOrganization();
 
   @POST('/organization/invite-member')
   Future<Result<InvitationResponse>> inviteMember({

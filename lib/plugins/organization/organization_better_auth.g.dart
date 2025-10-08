@@ -148,12 +148,12 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<Organization>> _getFullOrganization() async {
+  Future<HttpResponse<FullOrganization>> _getFullOrganization() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Result<Organization>>(
+    final _options = _setStreamType<Result<FullOrganization>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -164,9 +164,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Organization _value;
+    late FullOrganization _value;
     try {
-      _value = Organization.fromJson(_result.data!);
+      _value = FullOrganization.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -176,8 +176,8 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<Organization>> getFullOrganization() {
-    return BetterAuthCallAdapter<Organization>().adapt(
+  Future<Result<FullOrganization>> getFullOrganization() {
+    return BetterAuthCallAdapter<FullOrganization>().adapt(
       () => _getFullOrganization(),
     );
   }
