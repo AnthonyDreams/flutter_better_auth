@@ -2,6 +2,7 @@ export 'organization_better_auth.dart';
 export 'organization_extension.dart';
 export 'models/organization/organization.dart';
 export 'models/full_organization/full_organization.dart';
+export 'models/full_organization_wrapper/full_organization_response.dart';
 export 'models/member/member.dart';
 export 'models/invitation/invitation.dart';
 export 'models/organization_response/organization_response.dart';
