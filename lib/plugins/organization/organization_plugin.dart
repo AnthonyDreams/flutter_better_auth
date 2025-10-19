@@ -12,3 +12,4 @@ export 'models/invitation_response/invitation_response.dart';
 export 'models/invitations_response/invitations_response.dart';
 export 'models/check_slug_response/check_slug_response.dart';
 export 'models/permission_response/permission_response.dart';
+export 'models/update_organization_data/update_organization_data.dart';

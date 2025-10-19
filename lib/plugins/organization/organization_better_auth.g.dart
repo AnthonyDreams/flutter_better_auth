@@ -636,10 +636,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
 
   Future<HttpResponse<OrganizationResponse>> _updateOrganization({
     required String organizationId,
-    String? name,
-    String? slug,
-    String? logo,
-    Map<String, dynamic>? metadata,
+    UpdateOrganizationData? data,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -647,10 +644,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{
       'organizationId': organizationId,
-      'name': name,
-      'slug': slug,
-      'logo': logo,
-      'metadata': metadata,
+      'data': data,
     };
     _data.removeWhere((k, v) => v == null);
     final _options = _setStreamType<Result<OrganizationResponse>>(
@@ -678,19 +672,10 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   @override
   Future<Result<OrganizationResponse>> updateOrganization({
     required String organizationId,
-    String? name,
-    String? slug,
-    String? logo,
-    Map<String, dynamic>? metadata,
+    UpdateOrganizationData? data,
   }) {
     return BetterAuthCallAdapter<OrganizationResponse>().adapt(
-      () => _updateOrganization(
-        organizationId: organizationId,
-        name: name,
-        slug: slug,
-        logo: logo,
-        metadata: metadata,
-      ),
+      () => _updateOrganization(organizationId: organizationId, data: data),
     );
   }
 

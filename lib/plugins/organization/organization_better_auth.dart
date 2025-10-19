@@ -13,6 +13,7 @@ import 'models/members_response/members_response.dart';
 import 'models/organization/organization.dart';
 import 'models/organization_response/organization_response.dart';
 import 'models/permission_response/permission_response.dart';
+import 'models/update_organization_data/update_organization_data.dart';
 
 part 'organization_better_auth.g.dart';
 
@@ -103,10 +104,7 @@ abstract class OrganizationBetterAuth {
   @POST('/organization/update')
   Future<Result<OrganizationResponse>> updateOrganization({
     @BodyExtra('organizationId') required String organizationId,
-    @BodyExtra('name') String? name,
-    @BodyExtra('slug') String? slug,
-    @BodyExtra('logo') String? logo,
-    @BodyExtra('metadata') Map<String, dynamic>? metadata,
+    @BodyExtra('data') UpdateOrganizationData? data,
   });
 
   @POST('/organization/delete')
