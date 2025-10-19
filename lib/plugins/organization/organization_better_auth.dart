@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_better_auth/plugins/organization/models/full_organization/full_organization.dart';
-import 'package:flutter_better_auth/plugins/organization/models/full_organization_wrapper/full_organization_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../core/api/adapter.dart';
@@ -99,5 +98,19 @@ abstract class OrganizationBetterAuth {
   Future<Result<PermissionResponse>> hasPermission({
     @BodyExtra('permission') required String permission,
     @BodyExtra('organizationId') String? organizationId,
+  });
+
+  @POST('/organization/update')
+  Future<Result<OrganizationResponse>> updateOrganization({
+    @BodyExtra('organizationId') required String organizationId,
+    @BodyExtra('name') String? name,
+    @BodyExtra('slug') String? slug,
+    @BodyExtra('logo') String? logo,
+    @BodyExtra('metadata') Map<String, dynamic>? metadata,
+  });
+
+  @POST('/organization/delete')
+  Future<Result<SuccessResponse>> deleteOrganization({
+    @BodyExtra('organizationId') required String organizationId,
   });
 }

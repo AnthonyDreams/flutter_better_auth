@@ -634,6 +634,104 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
+  Future<HttpResponse<OrganizationResponse>> _updateOrganization({
+    required String organizationId,
+    String? name,
+    String? slug,
+    String? logo,
+    Map<String, dynamic>? metadata,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{
+      'organizationId': organizationId,
+      'name': name,
+      'slug': slug,
+      'logo': logo,
+      'metadata': metadata,
+    };
+    _data.removeWhere((k, v) => v == null);
+    final _options = _setStreamType<Result<OrganizationResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/organization/update',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late OrganizationResponse _value;
+    try {
+      _value = OrganizationResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<Result<OrganizationResponse>> updateOrganization({
+    required String organizationId,
+    String? name,
+    String? slug,
+    String? logo,
+    Map<String, dynamic>? metadata,
+  }) {
+    return BetterAuthCallAdapter<OrganizationResponse>().adapt(
+      () => _updateOrganization(
+        organizationId: organizationId,
+        name: name,
+        slug: slug,
+        logo: logo,
+        metadata: metadata,
+      ),
+    );
+  }
+
+  Future<HttpResponse<SuccessResponse>> _deleteOrganization({
+    required String organizationId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{'organizationId': organizationId};
+    final _options = _setStreamType<Result<SuccessResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/organization/delete',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SuccessResponse _value;
+    try {
+      _value = SuccessResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<Result<SuccessResponse>> deleteOrganization({
+    required String organizationId,
+  }) {
+    return BetterAuthCallAdapter<SuccessResponse>().adapt(
+      () => _deleteOrganization(organizationId: organizationId),
+    );
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
