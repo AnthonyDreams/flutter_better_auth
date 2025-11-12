@@ -25,6 +25,10 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     String? returnUrl,
     bool? disableRedirect,
   }) async {
+    // When using callbackUrlScheme, we need to disable server-side redirect
+    // and handle the callback URLs with the custom scheme
+    final shouldDisableRedirect = callbackUrlScheme != null || disableRedirect == true;
+
     final res = await upgradeSubscription(
       plan: plan,
       successUrl: callbackUrlScheme != null && !kIsWeb
@@ -33,7 +37,7 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
       cancelUrl: callbackUrlScheme != null && !kIsWeb
           ? Uri.parse(cancelUrl).replace(scheme: callbackUrlScheme).toString()
           : cancelUrl,
-      disableRedirect: disableRedirect,
+      disableRedirect: shouldDisableRedirect,
       annual: annual,
       referenceId: referenceId,
       subscriptionId: subscriptionId,
@@ -49,6 +53,9 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
       final result = await FlutterWebAuth2.authenticate(
         url: res.data!.url,
         callbackUrlScheme: callbackUrlScheme,
+        options: const FlutterWebAuth2Options(
+          preferEphemeral: true,
+        ),
       );
       final url = Uri.tryParse(result);
       final cookie = url?.queryParameters['cookie'];
