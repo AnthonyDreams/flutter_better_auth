@@ -25,19 +25,11 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     String? returnUrl,
     bool? disableRedirect,
   }) async {
-    // When using callbackUrlScheme, we need to disable server-side redirect
-    // and handle the callback URLs with the custom scheme
-    final shouldDisableRedirect = callbackUrlScheme != null || disableRedirect == true;
-
     final res = await upgradeSubscription(
       plan: plan,
-      successUrl: callbackUrlScheme != null && !kIsWeb
-          ? Uri.parse(successUrl).replace(scheme: callbackUrlScheme).toString()
-          : successUrl,
-      cancelUrl: callbackUrlScheme != null && !kIsWeb
-          ? Uri.parse(cancelUrl).replace(scheme: callbackUrlScheme).toString()
-          : cancelUrl,
-      disableRedirect: shouldDisableRedirect,
+      successUrl: successUrl,
+      cancelUrl: cancelUrl,
+      disableRedirect: disableRedirect,
       annual: annual,
       referenceId: referenceId,
       subscriptionId: subscriptionId,
@@ -47,14 +39,20 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     );
 
     // If we have a URL and callback scheme, open the webview
+    // Use HTTPS callback scheme with host/path to close when leaving Stripe
     if (res.data != null &&
         callbackUrlScheme != null &&
         res.data!.url.isNotEmpty) {
+      // Parse the API URL to extract host and path for callback detection
+      final apiUri = Uri.parse(FlutterBetterAuth.baseUrl);
+
       final result = await FlutterWebAuth2.authenticate(
         url: res.data!.url,
-        callbackUrlScheme: callbackUrlScheme,
-        options: const FlutterWebAuth2Options(
+        callbackUrlScheme: 'https',
+        options: FlutterWebAuth2Options(
           preferEphemeral: true,
+          httpsHost: apiUri.host,
+          httpsPath: '/',  // Match any path on the API domain
         ),
       );
       final url = Uri.tryParse(result);
