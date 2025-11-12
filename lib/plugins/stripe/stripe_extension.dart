@@ -1,6 +1,12 @@
 
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+
 import '../../core/api/better_auth_client.dart';
 import '../../core/api/models/result/result.dart';
+import '../../core/api/models/result/result_extension.dart';
 import '../../core/flutter_better_auth.dart';
 import 'models/subscription_upgrade_response.dart';
 import 'stripe_better_auth.dart';
@@ -20,6 +26,19 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     String? returnUrl,
     bool? disableRedirect,
   }) async {
+    // Add callbackScheme query parameter to returnUrl when callbackUrlScheme is provided
+    String? finalReturnUrl = returnUrl;
+
+    if (callbackUrlScheme != null && returnUrl != null && !kIsWeb) {
+      final returnUri = Uri.parse(returnUrl);
+      finalReturnUrl = returnUri.replace(
+        queryParameters: {
+          ...returnUri.queryParameters,
+          'callbackScheme': callbackUrlScheme,
+        },
+      ).toString();
+    }
+
     final res = await upgradeSubscription(
       plan: plan,
       successUrl: successUrl,
@@ -30,8 +49,38 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
       subscriptionId: subscriptionId,
       metadata: metadata,
       seats: seats,
-      returnUrl: returnUrl,
+      returnUrl: finalReturnUrl,
     );
+
+    // If we have a URL and callback scheme, open the webview
+    if (res.data != null &&
+        callbackUrlScheme != null &&
+        res.data!.url.isNotEmpty &&
+        !kIsWeb) {
+      final result = await FlutterWebAuth2.authenticate(
+        url: res.data!.url,
+        callbackUrlScheme: callbackUrlScheme,
+        options: const FlutterWebAuth2Options(
+          preferEphemeral: true,
+        ),
+      );
+
+      final url = Uri.tryParse(result);
+      final cookie = url?.queryParameters['cookie'];
+      if (cookie != null && cookie.isNotEmpty) {
+        final List<Cookie> cookies = [cookie]
+            .map((str) => str.split(RegExp('(?<=)(,)(?=[^;]+?=)')))
+            .expand((cookie) => cookie)
+            .where((cookie) => cookie.isNotEmpty)
+            .map((str) => Cookie.fromSetCookieValue(str))
+            .toList();
+
+        await FlutterBetterAuth.storage?.saveCookies(
+          Uri.parse(FlutterBetterAuth.baseUrl).host,
+          cookies,
+        );
+      }
+    }
 
     return res;
   }
