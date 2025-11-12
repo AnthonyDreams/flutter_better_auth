@@ -4,7 +4,7 @@ part 'cancel_subscription_body.freezed.dart';
 part 'cancel_subscription_body.g.dart';
 
 @freezed
-class CancelSubscriptionBody with _$CancelSubscriptionBody {
+abstract class CancelSubscriptionBody with _$CancelSubscriptionBody {
   const factory CancelSubscriptionBody({
     required String returnUrl,
     String? referenceId,

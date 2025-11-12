@@ -4,7 +4,7 @@ part 'upgrade_subscription_body.freezed.dart';
 part 'upgrade_subscription_body.g.dart';
 
 @freezed
-class UpgradeSubscriptionBody with _$UpgradeSubscriptionBody {
+abstract class UpgradeSubscriptionBody with _$UpgradeSubscriptionBody {
   const factory UpgradeSubscriptionBody({
     required String plan,
     required String successUrl,

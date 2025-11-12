@@ -19,7 +19,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
 
   final ParseErrorLogger? errorLogger;
 
-  Future<HttpResponse<SuccessResponse>> _upgradeSubscription({
+  Future<HttpResponse<SubscriptionUpgradeResponse>> _upgradeSubscription({
     required String plan,
     required String successUrl,
     required String cancelUrl,
@@ -48,7 +48,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
       'returnUrl': returnUrl,
     };
     _data.removeWhere((k, v) => v == null);
-    final _options = _setStreamType<Result<SuccessResponse>>(
+    final _options = _setStreamType<Result<SubscriptionUpgradeResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -59,9 +59,9 @@ class _StripeBetterAuth implements StripeBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SuccessResponse _value;
+    late SubscriptionUpgradeResponse _value;
     try {
-      _value = SuccessResponse.fromJson(_result.data!);
+      _value = SubscriptionUpgradeResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -71,7 +71,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
   }
 
   @override
-  Future<Result<SuccessResponse>> upgradeSubscription({
+  Future<Result<SubscriptionUpgradeResponse>> upgradeSubscription({
     required String plan,
     required String successUrl,
     required String cancelUrl,
@@ -83,7 +83,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     int? seats,
     String? returnUrl,
   }) {
-    return BetterAuthCallAdapter<SuccessResponse>().adapt(
+    return BetterAuthCallAdapter<SubscriptionUpgradeResponse>().adapt(
       () => _upgradeSubscription(
         plan: plan,
         successUrl: successUrl,

@@ -5,6 +5,7 @@ import '../../core/api/adapter.dart';
 import '../../core/api/models/result/result.dart';
 import '../../core/api/models/result/success_response.dart';
 import 'models/subscription.dart';
+import 'models/subscription_upgrade_response.dart';
 
 part 'stripe_better_auth.g.dart';
 
@@ -17,7 +18,7 @@ abstract class StripeBetterAuth {
   }) = _StripeBetterAuth;
 
   @POST('/subscription/upgrade')
-  Future<Result<SuccessResponse>> upgradeSubscription({
+  Future<Result<SubscriptionUpgradeResponse>> upgradeSubscription({
     @BodyExtra('plan') required String plan,
     @BodyExtra('successUrl') required String successUrl,
     @BodyExtra('cancelUrl') required String cancelUrl,

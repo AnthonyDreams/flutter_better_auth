@@ -4,7 +4,7 @@ part 'subscription.freezed.dart';
 part 'subscription.g.dart';
 
 @freezed
-class Subscription with _$Subscription {
+abstract class Subscription with _$Subscription {
   const factory Subscription({
     String? id,
     String? userId,

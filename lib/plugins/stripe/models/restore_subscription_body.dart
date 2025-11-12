@@ -4,7 +4,7 @@ part 'restore_subscription_body.freezed.dart';
 part 'restore_subscription_body.g.dart';
 
 @freezed
-class RestoreSubscriptionBody with _$RestoreSubscriptionBody {
+abstract class RestoreSubscriptionBody with _$RestoreSubscriptionBody {
   const factory RestoreSubscriptionBody({
     String? referenceId,
     String? subscriptionId,
