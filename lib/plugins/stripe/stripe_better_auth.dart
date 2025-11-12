@@ -22,7 +22,7 @@ abstract class StripeBetterAuth {
     @BodyExtra('plan') required String plan,
     @BodyExtra('successUrl') required String successUrl,
     @BodyExtra('cancelUrl') required String cancelUrl,
-    @BodyExtra('disableRedirect') required String disableRedirect,
+    @BodyExtra('disableRedirect') bool? disableRedirect,
     @BodyExtra('annual') bool? annual,
     @BodyExtra('referenceId') String? referenceId,
     @BodyExtra('subscriptionId') String? subscriptionId,

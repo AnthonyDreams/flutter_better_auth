@@ -23,6 +23,7 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     String? metadata,
     int? seats,
     String? returnUrl,
+    bool? disableRedirect,
   }) async {
     final res = await upgradeSubscription(
       plan: plan,
@@ -32,7 +33,7 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
       cancelUrl: callbackUrlScheme != null && !kIsWeb
           ? Uri.parse(cancelUrl).replace(scheme: callbackUrlScheme).toString()
           : cancelUrl,
-      disableRedirect: callbackUrlScheme != null ? 'true' : 'false',
+      disableRedirect: disableRedirect,
       annual: annual,
       referenceId: referenceId,
       subscriptionId: subscriptionId,
@@ -42,7 +43,9 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     );
 
     // If we have a URL and callback scheme, open the webview
-    if (res.data != null && callbackUrlScheme != null && res.data!.url.isNotEmpty) {
+    if (res.data != null &&
+        callbackUrlScheme != null &&
+        res.data!.url.isNotEmpty) {
       final result = await FlutterWebAuth2.authenticate(
         url: res.data!.url,
         callbackUrlScheme: callbackUrlScheme,
@@ -50,13 +53,12 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
       final url = Uri.tryParse(result);
       final cookie = url?.queryParameters['cookie'];
       if (cookie != null && cookie.isNotEmpty) {
-        final List<Cookie> cookies =
-            [cookie]
-                .map((str) => str.split(RegExp('(?<=)(,)(?=[^;]+?=)')))
-                .expand((cookie) => cookie)
-                .where((cookie) => cookie.isNotEmpty)
-                .map((str) => Cookie.fromSetCookieValue(str))
-                .toList();
+        final List<Cookie> cookies = [cookie]
+            .map((str) => str.split(RegExp('(?<=)(,)(?=[^;]+?=)')))
+            .expand((cookie) => cookie)
+            .where((cookie) => cookie.isNotEmpty)
+            .map((str) => Cookie.fromSetCookieValue(str))
+            .toList();
 
         await FlutterBetterAuth.storage?.saveCookies(
           Uri.parse(FlutterBetterAuth.baseUrl).host,
@@ -71,7 +73,7 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
 
 extension StripeBetterAuthExtension on BetterAuthClient {
   StripeBetterAuth get stripe => StripeBetterAuth(
-        FlutterBetterAuth.dioClient,
-        baseUrl: FlutterBetterAuth.baseUrl,
-      );
+    FlutterBetterAuth.dioClient,
+    baseUrl: FlutterBetterAuth.baseUrl,
+  );
 }
