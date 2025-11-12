@@ -7,21 +7,18 @@ part 'subscription.g.dart';
 abstract class Subscription with _$Subscription {
   const factory Subscription({
     String? id,
-    String? userId,
-    String? stripeSubscriptionId,
-    String? stripePriceId,
-    String? stripeCustomerId,
     String? plan,
-    String? status,
-    int? seats,
-    bool? annual,
-    Map<String, dynamic>? metadata,
     String? referenceId,
-    DateTime? currentPeriodStart,
-    DateTime? currentPeriodEnd,
-    DateTime? cancelAtPeriodEnd,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    String? stripeCustomerId,
+    String? stripeSubscriptionId,
+    String? status,
+    DateTime? periodStart,
+    DateTime? periodEnd,
+    DateTime? trialStart,
+    DateTime? trialEnd,
+    bool? cancelAtPeriodEnd,
+    int? seats,
+    String? priceId,
   }) = _Subscription;
 
   factory Subscription.fromJson(Map<String, dynamic> json) =>

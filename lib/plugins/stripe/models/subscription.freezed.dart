@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Subscription {
 
- String? get id; String? get userId; String? get stripeSubscriptionId; String? get stripePriceId; String? get stripeCustomerId; String? get plan; String? get status; int? get seats; bool? get annual; Map<String, dynamic>? get metadata; String? get referenceId; DateTime? get currentPeriodStart; DateTime? get currentPeriodEnd; DateTime? get cancelAtPeriodEnd; DateTime? get createdAt; DateTime? get updatedAt;
+ String? get id; String? get plan; String? get referenceId; String? get stripeCustomerId; String? get stripeSubscriptionId; String? get status;@JsonKey(name: 'periodStart') DateTime? get periodStart;@JsonKey(name: 'periodEnd') DateTime? get periodEnd; DateTime? get trialStart; DateTime? get trialEnd; bool? get cancelAtPeriodEnd; int? get seats;@JsonKey(name: 'priceId') String? get priceId;
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SubscriptionCopyWith<Subscription> get copyWith => _$SubscriptionCopyWithImpl<S
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Subscription&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.stripeSubscriptionId, stripeSubscriptionId) || other.stripeSubscriptionId == stripeSubscriptionId)&&(identical(other.stripePriceId, stripePriceId) || other.stripePriceId == stripePriceId)&&(identical(other.stripeCustomerId, stripeCustomerId) || other.stripeCustomerId == stripeCustomerId)&&(identical(other.plan, plan) || other.plan == plan)&&(identical(other.status, status) || other.status == status)&&(identical(other.seats, seats) || other.seats == seats)&&(identical(other.annual, annual) || other.annual == annual)&&const DeepCollectionEquality().equals(other.metadata, metadata)&&(identical(other.referenceId, referenceId) || other.referenceId == referenceId)&&(identical(other.currentPeriodStart, currentPeriodStart) || other.currentPeriodStart == currentPeriodStart)&&(identical(other.currentPeriodEnd, currentPeriodEnd) || other.currentPeriodEnd == currentPeriodEnd)&&(identical(other.cancelAtPeriodEnd, cancelAtPeriodEnd) || other.cancelAtPeriodEnd == cancelAtPeriodEnd)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Subscription&&(identical(other.id, id) || other.id == id)&&(identical(other.plan, plan) || other.plan == plan)&&(identical(other.referenceId, referenceId) || other.referenceId == referenceId)&&(identical(other.stripeCustomerId, stripeCustomerId) || other.stripeCustomerId == stripeCustomerId)&&(identical(other.stripeSubscriptionId, stripeSubscriptionId) || other.stripeSubscriptionId == stripeSubscriptionId)&&(identical(other.status, status) || other.status == status)&&(identical(other.periodStart, periodStart) || other.periodStart == periodStart)&&(identical(other.periodEnd, periodEnd) || other.periodEnd == periodEnd)&&(identical(other.trialStart, trialStart) || other.trialStart == trialStart)&&(identical(other.trialEnd, trialEnd) || other.trialEnd == trialEnd)&&(identical(other.cancelAtPeriodEnd, cancelAtPeriodEnd) || other.cancelAtPeriodEnd == cancelAtPeriodEnd)&&(identical(other.seats, seats) || other.seats == seats)&&(identical(other.priceId, priceId) || other.priceId == priceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,userId,stripeSubscriptionId,stripePriceId,stripeCustomerId,plan,status,seats,annual,const DeepCollectionEquality().hash(metadata),referenceId,currentPeriodStart,currentPeriodEnd,cancelAtPeriodEnd,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,plan,referenceId,stripeCustomerId,stripeSubscriptionId,status,periodStart,periodEnd,trialStart,trialEnd,cancelAtPeriodEnd,seats,priceId);
 
 @override
 String toString() {
-  return 'Subscription(id: $id, userId: $userId, stripeSubscriptionId: $stripeSubscriptionId, stripePriceId: $stripePriceId, stripeCustomerId: $stripeCustomerId, plan: $plan, status: $status, seats: $seats, annual: $annual, metadata: $metadata, referenceId: $referenceId, currentPeriodStart: $currentPeriodStart, currentPeriodEnd: $currentPeriodEnd, cancelAtPeriodEnd: $cancelAtPeriodEnd, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'Subscription(id: $id, plan: $plan, referenceId: $referenceId, stripeCustomerId: $stripeCustomerId, stripeSubscriptionId: $stripeSubscriptionId, status: $status, periodStart: $periodStart, periodEnd: $periodEnd, trialStart: $trialStart, trialEnd: $trialEnd, cancelAtPeriodEnd: $cancelAtPeriodEnd, seats: $seats, priceId: $priceId)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $SubscriptionCopyWith<$Res>  {
   factory $SubscriptionCopyWith(Subscription value, $Res Function(Subscription) _then) = _$SubscriptionCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? userId, String? stripeSubscriptionId, String? stripePriceId, String? stripeCustomerId, String? plan, String? status, int? seats, bool? annual, Map<String, dynamic>? metadata, String? referenceId, DateTime? currentPeriodStart, DateTime? currentPeriodEnd, DateTime? cancelAtPeriodEnd, DateTime? createdAt, DateTime? updatedAt
+ String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status,@JsonKey(name: 'periodStart') DateTime? periodStart,@JsonKey(name: 'periodEnd') DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats,@JsonKey(name: 'priceId') String? priceId
 });
 
 
@@ -65,25 +65,22 @@ class _$SubscriptionCopyWithImpl<$Res>
 
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? userId = freezed,Object? stripeSubscriptionId = freezed,Object? stripePriceId = freezed,Object? stripeCustomerId = freezed,Object? plan = freezed,Object? status = freezed,Object? seats = freezed,Object? annual = freezed,Object? metadata = freezed,Object? referenceId = freezed,Object? currentPeriodStart = freezed,Object? currentPeriodEnd = freezed,Object? cancelAtPeriodEnd = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? plan = freezed,Object? referenceId = freezed,Object? stripeCustomerId = freezed,Object? stripeSubscriptionId = freezed,Object? status = freezed,Object? periodStart = freezed,Object? periodEnd = freezed,Object? trialStart = freezed,Object? trialEnd = freezed,Object? cancelAtPeriodEnd = freezed,Object? seats = freezed,Object? priceId = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String?,stripeSubscriptionId: freezed == stripeSubscriptionId ? _self.stripeSubscriptionId : stripeSubscriptionId // ignore: cast_nullable_to_non_nullable
-as String?,stripePriceId: freezed == stripePriceId ? _self.stripePriceId : stripePriceId // ignore: cast_nullable_to_non_nullable
-as String?,stripeCustomerId: freezed == stripeCustomerId ? _self.stripeCustomerId : stripeCustomerId // ignore: cast_nullable_to_non_nullable
 as String?,plan: freezed == plan ? _self.plan : plan // ignore: cast_nullable_to_non_nullable
+as String?,referenceId: freezed == referenceId ? _self.referenceId : referenceId // ignore: cast_nullable_to_non_nullable
+as String?,stripeCustomerId: freezed == stripeCustomerId ? _self.stripeCustomerId : stripeCustomerId // ignore: cast_nullable_to_non_nullable
+as String?,stripeSubscriptionId: freezed == stripeSubscriptionId ? _self.stripeSubscriptionId : stripeSubscriptionId // ignore: cast_nullable_to_non_nullable
 as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String?,seats: freezed == seats ? _self.seats : seats // ignore: cast_nullable_to_non_nullable
-as int?,annual: freezed == annual ? _self.annual : annual // ignore: cast_nullable_to_non_nullable
-as bool?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,referenceId: freezed == referenceId ? _self.referenceId : referenceId // ignore: cast_nullable_to_non_nullable
-as String?,currentPeriodStart: freezed == currentPeriodStart ? _self.currentPeriodStart : currentPeriodStart // ignore: cast_nullable_to_non_nullable
-as DateTime?,currentPeriodEnd: freezed == currentPeriodEnd ? _self.currentPeriodEnd : currentPeriodEnd // ignore: cast_nullable_to_non_nullable
+as String?,periodStart: freezed == periodStart ? _self.periodStart : periodStart // ignore: cast_nullable_to_non_nullable
+as DateTime?,periodEnd: freezed == periodEnd ? _self.periodEnd : periodEnd // ignore: cast_nullable_to_non_nullable
+as DateTime?,trialStart: freezed == trialStart ? _self.trialStart : trialStart // ignore: cast_nullable_to_non_nullable
+as DateTime?,trialEnd: freezed == trialEnd ? _self.trialEnd : trialEnd // ignore: cast_nullable_to_non_nullable
 as DateTime?,cancelAtPeriodEnd: freezed == cancelAtPeriodEnd ? _self.cancelAtPeriodEnd : cancelAtPeriodEnd // ignore: cast_nullable_to_non_nullable
-as DateTime?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as bool?,seats: freezed == seats ? _self.seats : seats // ignore: cast_nullable_to_non_nullable
+as int?,priceId: freezed == priceId ? _self.priceId : priceId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -168,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? userId,  String? stripeSubscriptionId,  String? stripePriceId,  String? stripeCustomerId,  String? plan,  String? status,  int? seats,  bool? annual,  Map<String, dynamic>? metadata,  String? referenceId,  DateTime? currentPeriodStart,  DateTime? currentPeriodEnd,  DateTime? cancelAtPeriodEnd,  DateTime? createdAt,  DateTime? updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Subscription() when $default != null:
-return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePriceId,_that.stripeCustomerId,_that.plan,_that.status,_that.seats,_that.annual,_that.metadata,_that.referenceId,_that.currentPeriodStart,_that.currentPeriodEnd,_that.cancelAtPeriodEnd,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
   return orElse();
 
 }
@@ -189,10 +186,10 @@ return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePri
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? userId,  String? stripeSubscriptionId,  String? stripePriceId,  String? stripeCustomerId,  String? plan,  String? status,  int? seats,  bool? annual,  Map<String, dynamic>? metadata,  String? referenceId,  DateTime? currentPeriodStart,  DateTime? currentPeriodEnd,  DateTime? cancelAtPeriodEnd,  DateTime? createdAt,  DateTime? updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)  $default,) {final _that = this;
 switch (_that) {
 case _Subscription():
-return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePriceId,_that.stripeCustomerId,_that.plan,_that.status,_that.seats,_that.annual,_that.metadata,_that.referenceId,_that.currentPeriodStart,_that.currentPeriodEnd,_that.cancelAtPeriodEnd,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -209,10 +206,10 @@ return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePri
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? userId,  String? stripeSubscriptionId,  String? stripePriceId,  String? stripeCustomerId,  String? plan,  String? status,  int? seats,  bool? annual,  Map<String, dynamic>? metadata,  String? referenceId,  DateTime? currentPeriodStart,  DateTime? currentPeriodEnd,  DateTime? cancelAtPeriodEnd,  DateTime? createdAt,  DateTime? updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)?  $default,) {final _that = this;
 switch (_that) {
 case _Subscription() when $default != null:
-return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePriceId,_that.stripeCustomerId,_that.plan,_that.status,_that.seats,_that.annual,_that.metadata,_that.referenceId,_that.currentPeriodStart,_that.currentPeriodEnd,_that.cancelAtPeriodEnd,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
   return null;
 
 }
@@ -224,33 +221,22 @@ return $default(_that.id,_that.userId,_that.stripeSubscriptionId,_that.stripePri
 @JsonSerializable()
 
 class _Subscription implements Subscription {
-  const _Subscription({this.id, this.userId, this.stripeSubscriptionId, this.stripePriceId, this.stripeCustomerId, this.plan, this.status, this.seats, this.annual, final  Map<String, dynamic>? metadata, this.referenceId, this.currentPeriodStart, this.currentPeriodEnd, this.cancelAtPeriodEnd, this.createdAt, this.updatedAt}): _metadata = metadata;
+  const _Subscription({this.id, this.plan, this.referenceId, this.stripeCustomerId, this.stripeSubscriptionId, this.status, @JsonKey(name: 'periodStart') this.periodStart, @JsonKey(name: 'periodEnd') this.periodEnd, this.trialStart, this.trialEnd, this.cancelAtPeriodEnd, this.seats, @JsonKey(name: 'priceId') this.priceId});
   factory _Subscription.fromJson(Map<String, dynamic> json) => _$SubscriptionFromJson(json);
 
 @override final  String? id;
-@override final  String? userId;
-@override final  String? stripeSubscriptionId;
-@override final  String? stripePriceId;
-@override final  String? stripeCustomerId;
 @override final  String? plan;
-@override final  String? status;
-@override final  int? seats;
-@override final  bool? annual;
- final  Map<String, dynamic>? _metadata;
-@override Map<String, dynamic>? get metadata {
-  final value = _metadata;
-  if (value == null) return null;
-  if (_metadata is EqualUnmodifiableMapView) return _metadata;
-  // ignore: implicit_dynamic_type
-  return EqualUnmodifiableMapView(value);
-}
-
 @override final  String? referenceId;
-@override final  DateTime? currentPeriodStart;
-@override final  DateTime? currentPeriodEnd;
-@override final  DateTime? cancelAtPeriodEnd;
-@override final  DateTime? createdAt;
-@override final  DateTime? updatedAt;
+@override final  String? stripeCustomerId;
+@override final  String? stripeSubscriptionId;
+@override final  String? status;
+@override@JsonKey(name: 'periodStart') final  DateTime? periodStart;
+@override@JsonKey(name: 'periodEnd') final  DateTime? periodEnd;
+@override final  DateTime? trialStart;
+@override final  DateTime? trialEnd;
+@override final  bool? cancelAtPeriodEnd;
+@override final  int? seats;
+@override@JsonKey(name: 'priceId') final  String? priceId;
 
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
@@ -265,16 +251,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Subscription&&(identical(other.id, id) || other.id == id)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.stripeSubscriptionId, stripeSubscriptionId) || other.stripeSubscriptionId == stripeSubscriptionId)&&(identical(other.stripePriceId, stripePriceId) || other.stripePriceId == stripePriceId)&&(identical(other.stripeCustomerId, stripeCustomerId) || other.stripeCustomerId == stripeCustomerId)&&(identical(other.plan, plan) || other.plan == plan)&&(identical(other.status, status) || other.status == status)&&(identical(other.seats, seats) || other.seats == seats)&&(identical(other.annual, annual) || other.annual == annual)&&const DeepCollectionEquality().equals(other._metadata, _metadata)&&(identical(other.referenceId, referenceId) || other.referenceId == referenceId)&&(identical(other.currentPeriodStart, currentPeriodStart) || other.currentPeriodStart == currentPeriodStart)&&(identical(other.currentPeriodEnd, currentPeriodEnd) || other.currentPeriodEnd == currentPeriodEnd)&&(identical(other.cancelAtPeriodEnd, cancelAtPeriodEnd) || other.cancelAtPeriodEnd == cancelAtPeriodEnd)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Subscription&&(identical(other.id, id) || other.id == id)&&(identical(other.plan, plan) || other.plan == plan)&&(identical(other.referenceId, referenceId) || other.referenceId == referenceId)&&(identical(other.stripeCustomerId, stripeCustomerId) || other.stripeCustomerId == stripeCustomerId)&&(identical(other.stripeSubscriptionId, stripeSubscriptionId) || other.stripeSubscriptionId == stripeSubscriptionId)&&(identical(other.status, status) || other.status == status)&&(identical(other.periodStart, periodStart) || other.periodStart == periodStart)&&(identical(other.periodEnd, periodEnd) || other.periodEnd == periodEnd)&&(identical(other.trialStart, trialStart) || other.trialStart == trialStart)&&(identical(other.trialEnd, trialEnd) || other.trialEnd == trialEnd)&&(identical(other.cancelAtPeriodEnd, cancelAtPeriodEnd) || other.cancelAtPeriodEnd == cancelAtPeriodEnd)&&(identical(other.seats, seats) || other.seats == seats)&&(identical(other.priceId, priceId) || other.priceId == priceId));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,userId,stripeSubscriptionId,stripePriceId,stripeCustomerId,plan,status,seats,annual,const DeepCollectionEquality().hash(_metadata),referenceId,currentPeriodStart,currentPeriodEnd,cancelAtPeriodEnd,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,id,plan,referenceId,stripeCustomerId,stripeSubscriptionId,status,periodStart,periodEnd,trialStart,trialEnd,cancelAtPeriodEnd,seats,priceId);
 
 @override
 String toString() {
-  return 'Subscription(id: $id, userId: $userId, stripeSubscriptionId: $stripeSubscriptionId, stripePriceId: $stripePriceId, stripeCustomerId: $stripeCustomerId, plan: $plan, status: $status, seats: $seats, annual: $annual, metadata: $metadata, referenceId: $referenceId, currentPeriodStart: $currentPeriodStart, currentPeriodEnd: $currentPeriodEnd, cancelAtPeriodEnd: $cancelAtPeriodEnd, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'Subscription(id: $id, plan: $plan, referenceId: $referenceId, stripeCustomerId: $stripeCustomerId, stripeSubscriptionId: $stripeSubscriptionId, status: $status, periodStart: $periodStart, periodEnd: $periodEnd, trialStart: $trialStart, trialEnd: $trialEnd, cancelAtPeriodEnd: $cancelAtPeriodEnd, seats: $seats, priceId: $priceId)';
 }
 
 
@@ -285,7 +271,7 @@ abstract mixin class _$SubscriptionCopyWith<$Res> implements $SubscriptionCopyWi
   factory _$SubscriptionCopyWith(_Subscription value, $Res Function(_Subscription) _then) = __$SubscriptionCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? userId, String? stripeSubscriptionId, String? stripePriceId, String? stripeCustomerId, String? plan, String? status, int? seats, bool? annual, Map<String, dynamic>? metadata, String? referenceId, DateTime? currentPeriodStart, DateTime? currentPeriodEnd, DateTime? cancelAtPeriodEnd, DateTime? createdAt, DateTime? updatedAt
+ String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status,@JsonKey(name: 'periodStart') DateTime? periodStart,@JsonKey(name: 'periodEnd') DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats,@JsonKey(name: 'priceId') String? priceId
 });
 
 
@@ -302,25 +288,22 @@ class __$SubscriptionCopyWithImpl<$Res>
 
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? userId = freezed,Object? stripeSubscriptionId = freezed,Object? stripePriceId = freezed,Object? stripeCustomerId = freezed,Object? plan = freezed,Object? status = freezed,Object? seats = freezed,Object? annual = freezed,Object? metadata = freezed,Object? referenceId = freezed,Object? currentPeriodStart = freezed,Object? currentPeriodEnd = freezed,Object? cancelAtPeriodEnd = freezed,Object? createdAt = freezed,Object? updatedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? plan = freezed,Object? referenceId = freezed,Object? stripeCustomerId = freezed,Object? stripeSubscriptionId = freezed,Object? status = freezed,Object? periodStart = freezed,Object? periodEnd = freezed,Object? trialStart = freezed,Object? trialEnd = freezed,Object? cancelAtPeriodEnd = freezed,Object? seats = freezed,Object? priceId = freezed,}) {
   return _then(_Subscription(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,userId: freezed == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String?,stripeSubscriptionId: freezed == stripeSubscriptionId ? _self.stripeSubscriptionId : stripeSubscriptionId // ignore: cast_nullable_to_non_nullable
-as String?,stripePriceId: freezed == stripePriceId ? _self.stripePriceId : stripePriceId // ignore: cast_nullable_to_non_nullable
-as String?,stripeCustomerId: freezed == stripeCustomerId ? _self.stripeCustomerId : stripeCustomerId // ignore: cast_nullable_to_non_nullable
 as String?,plan: freezed == plan ? _self.plan : plan // ignore: cast_nullable_to_non_nullable
+as String?,referenceId: freezed == referenceId ? _self.referenceId : referenceId // ignore: cast_nullable_to_non_nullable
+as String?,stripeCustomerId: freezed == stripeCustomerId ? _self.stripeCustomerId : stripeCustomerId // ignore: cast_nullable_to_non_nullable
+as String?,stripeSubscriptionId: freezed == stripeSubscriptionId ? _self.stripeSubscriptionId : stripeSubscriptionId // ignore: cast_nullable_to_non_nullable
 as String?,status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as String?,seats: freezed == seats ? _self.seats : seats // ignore: cast_nullable_to_non_nullable
-as int?,annual: freezed == annual ? _self.annual : annual // ignore: cast_nullable_to_non_nullable
-as bool?,metadata: freezed == metadata ? _self._metadata : metadata // ignore: cast_nullable_to_non_nullable
-as Map<String, dynamic>?,referenceId: freezed == referenceId ? _self.referenceId : referenceId // ignore: cast_nullable_to_non_nullable
-as String?,currentPeriodStart: freezed == currentPeriodStart ? _self.currentPeriodStart : currentPeriodStart // ignore: cast_nullable_to_non_nullable
-as DateTime?,currentPeriodEnd: freezed == currentPeriodEnd ? _self.currentPeriodEnd : currentPeriodEnd // ignore: cast_nullable_to_non_nullable
+as String?,periodStart: freezed == periodStart ? _self.periodStart : periodStart // ignore: cast_nullable_to_non_nullable
+as DateTime?,periodEnd: freezed == periodEnd ? _self.periodEnd : periodEnd // ignore: cast_nullable_to_non_nullable
+as DateTime?,trialStart: freezed == trialStart ? _self.trialStart : trialStart // ignore: cast_nullable_to_non_nullable
+as DateTime?,trialEnd: freezed == trialEnd ? _self.trialEnd : trialEnd // ignore: cast_nullable_to_non_nullable
 as DateTime?,cancelAtPeriodEnd: freezed == cancelAtPeriodEnd ? _self.cancelAtPeriodEnd : cancelAtPeriodEnd // ignore: cast_nullable_to_non_nullable
-as DateTime?,createdAt: freezed == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,updatedAt: freezed == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime?,
+as bool?,seats: freezed == seats ? _self.seats : seats // ignore: cast_nullable_to_non_nullable
+as int?,priceId: freezed == priceId ? _self.priceId : priceId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
