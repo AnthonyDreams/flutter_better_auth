@@ -57,11 +57,16 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
         callbackUrlScheme != null &&
         res.data!.url.isNotEmpty &&
         !kIsWeb) {
+      // Parse the base URL to detect callback
+      final baseUri = Uri.parse(FlutterBetterAuth.baseUrl);
+
       final result = await FlutterWebAuth2.authenticate(
         url: res.data!.url,
-        callbackUrlScheme: callbackUrlScheme,
-        options: const FlutterWebAuth2Options(
+        callbackUrlScheme: 'https',
+        options: FlutterWebAuth2Options(
           preferEphemeral: true,
+          httpsHost: baseUri.host,
+          httpsPath: '/subscription/callback',
         ),
       );
 
