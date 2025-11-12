@@ -18,8 +18,8 @@ _UpdateOrganizationData _$UpdateOrganizationDataFromJson(
 Map<String, dynamic> _$UpdateOrganizationDataToJson(
   _UpdateOrganizationData instance,
 ) => <String, dynamic>{
-  'name': ?instance.name,
-  'slug': ?instance.slug,
-  'logo': ?instance.logo,
-  'metadata': ?instance.metadata,
+  'name': instance.name,
+  'slug': instance.slug,
+  'logo': instance.logo,
+  'metadata': instance.metadata,
 };

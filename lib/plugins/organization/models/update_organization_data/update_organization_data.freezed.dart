@@ -209,8 +209,8 @@ return $default(_that.name,_that.slug,_that.logo,_that.metadata);case _:
 }
 
 /// @nodoc
+@JsonSerializable()
 
-@JsonSerializable(includeIfNull: false)
 class _UpdateOrganizationData extends UpdateOrganizationData {
   const _UpdateOrganizationData({this.name, this.slug, this.logo, final  Map<String, dynamic>? metadata}): _metadata = metadata,super._();
   factory _UpdateOrganizationData.fromJson(Map<String, dynamic> json) => _$UpdateOrganizationDataFromJson(json);
