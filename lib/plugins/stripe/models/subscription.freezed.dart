@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Subscription {
 
- String? get id; String? get plan; String? get referenceId; String? get stripeCustomerId; String? get stripeSubscriptionId; String? get status;@JsonKey(name: 'periodStart') DateTime? get periodStart;@JsonKey(name: 'periodEnd') DateTime? get periodEnd; DateTime? get trialStart; DateTime? get trialEnd; bool? get cancelAtPeriodEnd; int? get seats;@JsonKey(name: 'priceId') String? get priceId;
+ String? get id; String? get plan; String? get referenceId; String? get stripeCustomerId; String? get stripeSubscriptionId; String? get status; DateTime? get periodStart; DateTime? get periodEnd; DateTime? get trialStart; DateTime? get trialEnd; bool? get cancelAtPeriodEnd; int? get seats; String? get priceId;
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $SubscriptionCopyWith<$Res>  {
   factory $SubscriptionCopyWith(Subscription value, $Res Function(Subscription) _then) = _$SubscriptionCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status,@JsonKey(name: 'periodStart') DateTime? periodStart,@JsonKey(name: 'periodEnd') DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats,@JsonKey(name: 'priceId') String? priceId
+ String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status, DateTime? periodStart, DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats, String? priceId
 });
 
 
@@ -165,7 +165,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status,  DateTime? periodStart,  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats,  String? priceId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Subscription() when $default != null:
 return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
@@ -186,7 +186,7 @@ return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status,  DateTime? periodStart,  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats,  String? priceId)  $default,) {final _that = this;
 switch (_that) {
 case _Subscription():
 return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
@@ -206,7 +206,7 @@ return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status, @JsonKey(name: 'periodStart')  DateTime? periodStart, @JsonKey(name: 'periodEnd')  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats, @JsonKey(name: 'priceId')  String? priceId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? plan,  String? referenceId,  String? stripeCustomerId,  String? stripeSubscriptionId,  String? status,  DateTime? periodStart,  DateTime? periodEnd,  DateTime? trialStart,  DateTime? trialEnd,  bool? cancelAtPeriodEnd,  int? seats,  String? priceId)?  $default,) {final _that = this;
 switch (_that) {
 case _Subscription() when $default != null:
 return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_that.stripeSubscriptionId,_that.status,_that.periodStart,_that.periodEnd,_that.trialStart,_that.trialEnd,_that.cancelAtPeriodEnd,_that.seats,_that.priceId);case _:
@@ -221,7 +221,7 @@ return $default(_that.id,_that.plan,_that.referenceId,_that.stripeCustomerId,_th
 @JsonSerializable()
 
 class _Subscription implements Subscription {
-  const _Subscription({this.id, this.plan, this.referenceId, this.stripeCustomerId, this.stripeSubscriptionId, this.status, @JsonKey(name: 'periodStart') this.periodStart, @JsonKey(name: 'periodEnd') this.periodEnd, this.trialStart, this.trialEnd, this.cancelAtPeriodEnd, this.seats, @JsonKey(name: 'priceId') this.priceId});
+  const _Subscription({this.id, this.plan, this.referenceId, this.stripeCustomerId, this.stripeSubscriptionId, this.status, this.periodStart, this.periodEnd, this.trialStart, this.trialEnd, this.cancelAtPeriodEnd, this.seats, this.priceId});
   factory _Subscription.fromJson(Map<String, dynamic> json) => _$SubscriptionFromJson(json);
 
 @override final  String? id;
@@ -230,13 +230,13 @@ class _Subscription implements Subscription {
 @override final  String? stripeCustomerId;
 @override final  String? stripeSubscriptionId;
 @override final  String? status;
-@override@JsonKey(name: 'periodStart') final  DateTime? periodStart;
-@override@JsonKey(name: 'periodEnd') final  DateTime? periodEnd;
+@override final  DateTime? periodStart;
+@override final  DateTime? periodEnd;
 @override final  DateTime? trialStart;
 @override final  DateTime? trialEnd;
 @override final  bool? cancelAtPeriodEnd;
 @override final  int? seats;
-@override@JsonKey(name: 'priceId') final  String? priceId;
+@override final  String? priceId;
 
 /// Create a copy of Subscription
 /// with the given fields replaced by the non-null parameter values.
@@ -271,7 +271,7 @@ abstract mixin class _$SubscriptionCopyWith<$Res> implements $SubscriptionCopyWi
   factory _$SubscriptionCopyWith(_Subscription value, $Res Function(_Subscription) _then) = __$SubscriptionCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status,@JsonKey(name: 'periodStart') DateTime? periodStart,@JsonKey(name: 'periodEnd') DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats,@JsonKey(name: 'priceId') String? priceId
+ String? id, String? plan, String? referenceId, String? stripeCustomerId, String? stripeSubscriptionId, String? status, DateTime? periodStart, DateTime? periodEnd, DateTime? trialStart, DateTime? trialEnd, bool? cancelAtPeriodEnd, int? seats, String? priceId
 });
 
 

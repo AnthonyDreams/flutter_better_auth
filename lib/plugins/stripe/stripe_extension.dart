@@ -8,6 +8,7 @@ import '../../core/api/better_auth_client.dart';
 import '../../core/api/models/result/result.dart';
 import '../../core/api/models/result/result_extension.dart';
 import '../../core/flutter_better_auth.dart';
+import 'models/subscription.dart';
 import 'models/subscription_upgrade_response.dart';
 import 'stripe_better_auth.dart';
 
@@ -88,6 +89,13 @@ extension StripeSubscriptionExtension on StripeBetterAuth {
     }
 
     return res;
+  }
+
+  /// List subscriptions with optional referenceId filter
+  Future<Result<List<Subscription>>> list({
+    String? referenceId,
+  }) async {
+    return listSubscriptions(referenceId: referenceId);
   }
 }
 

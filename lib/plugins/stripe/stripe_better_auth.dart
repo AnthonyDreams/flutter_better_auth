@@ -48,7 +48,9 @@ abstract class StripeBetterAuth {
   });
 
   @GET('/subscription/list')
-  Future<Result<List<Subscription>>> listSubscriptions();
+  Future<Result<List<Subscription>>> listSubscriptions({
+    @Query('referenceId') String? referenceId,
+  });
 
   @GET('/subscription/success')
   Future<Result<SuccessResponse>> subscriptionSuccess();

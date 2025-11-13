@@ -233,9 +233,12 @@ class _StripeBetterAuth implements StripeBetterAuth {
     );
   }
 
-  Future<HttpResponse<List<Subscription>>> _listSubscriptions() async {
+  Future<HttpResponse<List<Subscription>>> _listSubscriptions({
+    String? referenceId,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'referenceId': referenceId};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<Result<List<Subscription>>>(
@@ -263,9 +266,9 @@ class _StripeBetterAuth implements StripeBetterAuth {
   }
 
   @override
-  Future<Result<List<Subscription>>> listSubscriptions() {
+  Future<Result<List<Subscription>>> listSubscriptions({String? referenceId}) {
     return BetterAuthCallAdapter<List<Subscription>>().adapt(
-      () => _listSubscriptions(),
+      () => _listSubscriptions(referenceId: referenceId),
     );
   }
 
