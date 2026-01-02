@@ -8,7 +8,7 @@ part of 'organization_better_auth.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _OrganizationBetterAuth implements OrganizationBetterAuth {
   _OrganizationBetterAuth(this._dio, {this.baseUrl, this.errorLogger});
@@ -51,7 +51,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = OrganizationResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -97,7 +97,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = CheckSlugResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -133,7 +133,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .map((dynamic i) => Organization.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -169,7 +169,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           ? null
           : FullOrganization.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -213,7 +213,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = InvitationResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -243,7 +243,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{'organizationId': organizationId};
     final _options = _setStreamType<Result<MembersResponse>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
             '/organization/list-members',
@@ -257,7 +257,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = MembersResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -299,7 +299,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -344,7 +344,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = MemberResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -388,7 +388,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = MemberResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -426,7 +426,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -462,7 +462,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = InvitationsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -498,7 +498,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = MemberResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -536,7 +536,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -572,7 +572,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = MemberResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -614,7 +614,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = PermissionResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -662,7 +662,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = OrganizationResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -701,7 +701,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);

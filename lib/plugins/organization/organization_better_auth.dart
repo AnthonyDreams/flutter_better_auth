@@ -51,7 +51,7 @@ abstract class OrganizationBetterAuth {
     @BodyExtra('role') String? role,
   });
 
-  @POST('/organization/list-members')
+  @GET('/organization/list-members')
   Future<Result<MembersResponse>> listMembers({
     @BodyExtra('organizationId') required String organizationId,
   });

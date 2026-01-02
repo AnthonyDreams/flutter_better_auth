@@ -8,7 +8,7 @@ part of 'stripe_better_auth.dart';
 // RetrofitGenerator
 // **************************************************************************
 
-// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter
+// ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
 class _StripeBetterAuth implements StripeBetterAuth {
   _StripeBetterAuth(this._dio, {this.baseUrl, this.errorLogger});
@@ -63,7 +63,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     try {
       _value = SubscriptionUpgradeResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -119,7 +119,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -163,7 +163,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -213,7 +213,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -258,7 +258,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
           .map((dynamic i) => Subscription.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
@@ -292,7 +292,7 @@ class _StripeBetterAuth implements StripeBetterAuth {
     try {
       _value = SuccessResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
+      errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
     }
     final httpResponse = HttpResponse(_value, _result);
