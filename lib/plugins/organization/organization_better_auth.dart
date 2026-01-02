@@ -58,9 +58,9 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/remove-member')
-  Future<Result<SuccessResponse>> removeMember({
-    @BodyExtra('organizationId') required String organizationId,
-    @BodyExtra('userId') required String userId,
+  Future<Result<MemberResponse>> removeMember({
+    @BodyExtra('memberIdOrEmail') required String memberIdOrEmail,
+    @BodyExtra('organizationId') String? organizationId,
   });
 
   @POST('/organization/update-member-role')

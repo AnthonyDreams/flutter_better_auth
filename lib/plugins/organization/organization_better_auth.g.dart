@@ -273,18 +273,20 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<SuccessResponse>> _removeMember({
-    required String organizationId,
-    required String userId,
+  Future<HttpResponse<MemberResponse>> _removeMember({
+    required String memberIdOrEmail,
+    String? organizationId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{
+      'memberIdOrEmail': memberIdOrEmail,
       'organizationId': organizationId,
-      'userId': userId,
     };
-    final _options = _setStreamType<Result<SuccessResponse>>(
+    _data.removeWhere((k, v) => v == null);
+    final _options = _setStreamType<Result<MemberResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -295,9 +297,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SuccessResponse _value;
+    late MemberResponse _value;
     try {
-      _value = SuccessResponse.fromJson(_result.data!);
+      _value = MemberResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -307,12 +309,15 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<SuccessResponse>> removeMember({
-    required String organizationId,
-    required String userId,
+  Future<Result<MemberResponse>> removeMember({
+    required String memberIdOrEmail,
+    String? organizationId,
   }) {
-    return BetterAuthCallAdapter<SuccessResponse>().adapt(
-      () => _removeMember(organizationId: organizationId, userId: userId),
+    return BetterAuthCallAdapter<MemberResponse>().adapt(
+      () => _removeMember(
+        memberIdOrEmail: memberIdOrEmail,
+        organizationId: organizationId,
+      ),
     );
   }
 
