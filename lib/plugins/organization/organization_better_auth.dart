@@ -63,7 +63,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/update-member-role')
-  Future<Result<MemberResponse>> updateMemberRole({
+  Future<Result<Member>> updateMemberRole({
     @BodyExtra('memberId') required String memberId,
     @BodyExtra('role') required String role,
     @BodyExtra('organizationId') String? organizationId,
