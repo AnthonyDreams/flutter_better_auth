@@ -81,7 +81,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @GET('/organization/list-invitations')
-  Future<Result<InvitationsResponse>> listInvitations();
+  Future<Result<List<Invitation>>> listInvitations();
 
   @POST('/organization/set-active')
   Future<Result<MemberResponse>> setActiveOrganization({

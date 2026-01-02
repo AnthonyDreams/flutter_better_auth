@@ -442,12 +442,12 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<InvitationsResponse>> _listInvitations() async {
+  Future<HttpResponse<List<Invitation>>> _listInvitations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Result<InvitationsResponse>>(
+    final _options = _setStreamType<Result<List<Invitation>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -457,10 +457,12 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late InvitationsResponse _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Invitation> _value;
     try {
-      _value = InvitationsResponse.fromJson(_result.data!);
+      _value = _result.data!
+          .map((dynamic i) => Invitation.fromJson(i as Map<String, dynamic>))
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -470,8 +472,8 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<InvitationsResponse>> listInvitations() {
-    return BetterAuthCallAdapter<InvitationsResponse>().adapt(
+  Future<Result<List<Invitation>>> listInvitations() {
+    return BetterAuthCallAdapter<List<Invitation>>().adapt(
       () => _listInvitations(),
     );
   }
