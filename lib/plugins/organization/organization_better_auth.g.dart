@@ -317,18 +317,20 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   Future<HttpResponse<MemberResponse>> _updateMemberRole({
-    required String organizationId,
-    required String userId,
+    required String memberId,
     required String role,
+    String? organizationId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{
-      'organizationId': organizationId,
-      'userId': userId,
+      'memberId': memberId,
       'role': role,
+      'organizationId': organizationId,
     };
+    _data.removeWhere((k, v) => v == null);
     final _options = _setStreamType<Result<MemberResponse>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -353,15 +355,15 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
 
   @override
   Future<Result<MemberResponse>> updateMemberRole({
-    required String organizationId,
-    required String userId,
+    required String memberId,
     required String role,
+    String? organizationId,
   }) {
     return BetterAuthCallAdapter<MemberResponse>().adapt(
       () => _updateMemberRole(
-        organizationId: organizationId,
-        userId: userId,
+        memberId: memberId,
         role: role,
+        organizationId: organizationId,
       ),
     );
   }
