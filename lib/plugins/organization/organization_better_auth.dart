@@ -80,7 +80,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/cancel-invitation')
-  Future<Result<SuccessResponse>> cancelInvitation({
+  Future<Result<Invitation>> cancelInvitation({
     @BodyExtra('invitationId') required String invitationId,
   });
 
