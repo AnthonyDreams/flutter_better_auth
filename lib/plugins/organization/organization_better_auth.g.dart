@@ -442,6 +442,44 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
+  Future<HttpResponse<SuccessResponse>> _cancelInvitation({
+    required String invitationId,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{'invitationId': invitationId};
+    final _options = _setStreamType<Result<SuccessResponse>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/organization/cancel-invitation',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SuccessResponse _value;
+    try {
+      _value = SuccessResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<Result<SuccessResponse>> cancelInvitation({
+    required String invitationId,
+  }) {
+    return BetterAuthCallAdapter<SuccessResponse>().adapt(
+      () => _cancelInvitation(invitationId: invitationId),
+    );
+  }
+
   Future<HttpResponse<List<Invitation>>> _listInvitations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
