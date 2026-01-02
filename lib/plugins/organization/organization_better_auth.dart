@@ -96,7 +96,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/leave')
-  Future<Result<SuccessResponse>> leaveOrganization({
+  Future<Result<Member>> leaveOrganization({
     @BodyExtra('organizationId') required String organizationId,
   });
 

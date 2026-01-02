@@ -590,14 +590,14 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<SuccessResponse>> _leaveOrganization({
+  Future<HttpResponse<Member>> _leaveOrganization({
     required String organizationId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{'organizationId': organizationId};
-    final _options = _setStreamType<Result<SuccessResponse>>(
+    final _options = _setStreamType<Result<Member>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -608,9 +608,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late SuccessResponse _value;
+    late Member _value;
     try {
-      _value = SuccessResponse.fromJson(_result.data!);
+      _value = Member.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -620,10 +620,8 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<SuccessResponse>> leaveOrganization({
-    required String organizationId,
-  }) {
-    return BetterAuthCallAdapter<SuccessResponse>().adapt(
+  Future<Result<Member>> leaveOrganization({required String organizationId}) {
+    return BetterAuthCallAdapter<Member>().adapt(
       () => _leaveOrganization(organizationId: organizationId),
     );
   }
