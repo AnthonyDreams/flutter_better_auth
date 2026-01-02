@@ -91,7 +91,7 @@ class _BetterAuthClient implements BetterAuthClient {
     );
   }
 
-  Future<HttpResponse<StatusResponse>> _forgotPassword({
+  Future<HttpResponse<StatusResponse>> _requestPasswordReset({
     required String email,
     String? redirectTo,
   }) async {
@@ -105,7 +105,7 @@ class _BetterAuthClient implements BetterAuthClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/forget-password',
+            '/request-password-reset',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -124,12 +124,12 @@ class _BetterAuthClient implements BetterAuthClient {
   }
 
   @override
-  Future<Result<StatusResponse>> forgotPassword({
+  Future<Result<StatusResponse>> requestPasswordReset({
     required String email,
     String? redirectTo,
   }) {
     return BetterAuthCallAdapter<StatusResponse>().adapt(
-      () => _forgotPassword(email: email, redirectTo: redirectTo),
+      () => _requestPasswordReset(email: email, redirectTo: redirectTo),
     );
   }
 
