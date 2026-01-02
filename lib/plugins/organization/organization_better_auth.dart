@@ -7,6 +7,7 @@ import '../../core/api/models/result/result.dart';
 import '../../core/api/models/result/success_response.dart';
 import 'models/check_slug_response/check_slug_response.dart';
 import 'models/invitation/invitation.dart';
+import 'models/invitation_response/invitation_response.dart';
 import 'models/member/member.dart';
 import 'models/member_response/member_response.dart';
 import 'models/members_response/members_response.dart';
@@ -75,7 +76,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/reject-invitation')
-  Future<Result<SuccessResponse>> rejectInvitation({
+  Future<Result<InvitationResponse>> rejectInvitation({
     @BodyExtra('invitationId') required String invitationId,
   });
 
