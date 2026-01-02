@@ -8,6 +8,7 @@ import '../../core/api/models/result/success_response.dart';
 import 'models/check_slug_response/check_slug_response.dart';
 import 'models/invitation_response/invitation_response.dart';
 import 'models/invitations_response/invitations_response.dart';
+import 'models/member/member.dart';
 import 'models/member_response/member_response.dart';
 import 'models/members_response/members_response.dart';
 import 'models/organization/organization.dart';
@@ -93,7 +94,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @GET('/organization/get-active-member')
-  Future<Result<MemberResponse>> getActiveMember();
+  Future<Result<Member>> getActiveMember();
 
   @POST('/organization/has-permission')
   Future<Result<PermissionResponse>> hasPermission({
