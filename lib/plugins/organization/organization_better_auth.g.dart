@@ -514,6 +514,42 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
+  Future<HttpResponse<List<Invitation>>> _listUserInvitations() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<Result<List<Invitation>>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/organization/list-user-invitations',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Invitation> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => Invitation.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    final httpResponse = HttpResponse(_value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<Result<List<Invitation>>> listUserInvitations() {
+    return BetterAuthCallAdapter<List<Invitation>>().adapt(
+      () => _listUserInvitations(),
+    );
+  }
+
   Future<HttpResponse<MemberResponse>> _setActiveOrganization({
     required String organizationId,
   }) async {

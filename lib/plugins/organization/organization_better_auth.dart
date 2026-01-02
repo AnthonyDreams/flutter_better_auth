@@ -87,6 +87,9 @@ abstract class OrganizationBetterAuth {
   @GET('/organization/list-invitations')
   Future<Result<List<Invitation>>> listInvitations();
 
+  @GET('/organization/list-user-invitations')
+  Future<Result<List<Invitation>>> listUserInvitations();
+
   @POST('/organization/set-active')
   Future<Result<MemberResponse>> setActiveOrganization({
     @BodyExtra('organizationId') required String organizationId,
