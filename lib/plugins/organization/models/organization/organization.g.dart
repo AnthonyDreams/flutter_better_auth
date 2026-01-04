@@ -13,7 +13,7 @@ _Organization _$OrganizationFromJson(Map<String, dynamic> json) =>
       slug: json['slug'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
       logo: json['logo'] as String?,
-      metadata: json['metadata'] as Map<String, dynamic>?,
+      metadata: json['metadata'] as String?,
     );
 
 Map<String, dynamic> _$OrganizationToJson(_Organization instance) =>
