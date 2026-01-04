@@ -15,6 +15,7 @@ import 'models/organization/organization.dart';
 import 'models/organization_response/organization_response.dart';
 import 'models/permission_response/permission_response.dart';
 import 'models/update_organization_data/update_organization_data.dart';
+import 'models/updated_organization/updated_organization.dart';
 
 part 'organization_better_auth.g.dart';
 
@@ -111,7 +112,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/update')
-  Future<Result<Organization>> updateOrganization({
+  Future<Result<UpdatedOrganization>> updateOrganization({
     @BodyExtra('organizationId') required String organizationId,
     @BodyExtra('data') UpdateOrganizationData? data,
   });

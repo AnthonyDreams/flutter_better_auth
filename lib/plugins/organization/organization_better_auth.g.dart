@@ -711,7 +711,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<Organization>> _updateOrganization({
+  Future<HttpResponse<UpdatedOrganization>> _updateOrganization({
     required String organizationId,
     UpdateOrganizationData? data,
   }) async {
@@ -724,7 +724,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
       'data': data,
     };
     _data.removeWhere((k, v) => v == null);
-    final _options = _setStreamType<Result<Organization>>(
+    final _options = _setStreamType<Result<UpdatedOrganization>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -735,9 +735,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Organization _value;
+    late UpdatedOrganization _value;
     try {
-      _value = Organization.fromJson(_result.data!);
+      _value = UpdatedOrganization.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -747,11 +747,11 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<Organization>> updateOrganization({
+  Future<Result<UpdatedOrganization>> updateOrganization({
     required String organizationId,
     UpdateOrganizationData? data,
   }) {
-    return BetterAuthCallAdapter<Organization>().adapt(
+    return BetterAuthCallAdapter<UpdatedOrganization>().adapt(
       () => _updateOrganization(organizationId: organizationId, data: data),
     );
   }
