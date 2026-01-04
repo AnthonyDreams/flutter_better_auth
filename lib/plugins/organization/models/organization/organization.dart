@@ -11,7 +11,7 @@ abstract class Organization with _$Organization {
     required String slug,
     required DateTime createdAt,
     String? logo,
-    String? metadata,
+    Map<String, dynamic>? metadata,
   }) = _Organization;
 
   factory Organization.fromJson(Map<String, dynamic> json) =>

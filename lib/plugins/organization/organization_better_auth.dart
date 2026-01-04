@@ -111,7 +111,7 @@ abstract class OrganizationBetterAuth {
   });
 
   @POST('/organization/update')
-  Future<Result<OrganizationResponse>> updateOrganization({
+  Future<Result<Organization>> updateOrganization({
     @BodyExtra('organizationId') required String organizationId,
     @BodyExtra('data') UpdateOrganizationData? data,
   });
