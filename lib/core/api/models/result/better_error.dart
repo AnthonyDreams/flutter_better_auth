@@ -7,6 +7,7 @@ part 'better_error.g.dart';
 abstract class BetterError with _$BetterError {
   const factory BetterError({
     @Default("ERROR") String code,
+    int? statusCode,
     required String message,
     required String? stack,
   }) = _BetterError;
