@@ -15,15 +15,13 @@ class BetterAuthCallAdapter<T>
       return Result<T>.ok(data);
     } on DioException catch (e, s) {
       final res = e.response;
-      // logger.i(res?.headers);
-      // final status = res?.statusCode;
-      // logger.e("DioException", error: e, stackTrace: s);
-      // logger.e("Status: $status, Body: $body");
+      final data = res?.data;
+      final isMap = data is Map<String, dynamic>;
       return Result.err(
         BetterError(
-          code: res?.data?['code'] ?? "ERROR",
+          code: isMap ? data['code'] ?? "ERROR" : "ERROR",
           statusCode: res?.statusCode,
-          message: res?.data?['message'] ?? e.message,
+          message: isMap ? data['message'] ?? e.message : e.message,
           stack: s.toString(),
         ),
       );
