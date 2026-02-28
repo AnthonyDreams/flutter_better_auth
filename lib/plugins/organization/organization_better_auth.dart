@@ -12,7 +12,6 @@ import 'models/member/member.dart';
 import 'models/member_response/member_response.dart';
 import 'models/members_response/members_response.dart';
 import 'models/organization/organization.dart';
-import 'models/organization_response/organization_response.dart';
 import 'models/permission_response/permission_response.dart';
 import 'models/update_organization_data/update_organization_data.dart';
 import 'models/updated_organization/updated_organization.dart';
@@ -28,7 +27,7 @@ abstract class OrganizationBetterAuth {
   }) = _OrganizationBetterAuth;
 
   @POST('/organization/create')
-  Future<Result<OrganizationResponse>> createOrganization({
+  Future<Result<Organization>> createOrganization({
     @BodyExtra('name') required String name,
     @BodyExtra('slug') required String slug,
     @BodyExtra('logo') String? logo,

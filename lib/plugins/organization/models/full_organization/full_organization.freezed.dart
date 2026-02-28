@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FullOrganization {
 
- String? get id; String get name; String get slug; DateTime get createdAt; List<Member> get members; List<Invitation> get invitations; String? get logo; String? get metadata;
+ String? get id; String get name; String get slug; DateTime get createdAt; List<Member> get members; List<Invitation> get invitations; String? get logo; Object? get metadata;
 /// Create a copy of FullOrganization
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,12 +28,12 @@ $FullOrganizationCopyWith<FullOrganization> get copyWith => _$FullOrganizationCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullOrganization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.invitations, invitations)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.metadata, metadata) || other.metadata == metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FullOrganization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other.members, members)&&const DeepCollectionEquality().equals(other.invitations, invitations)&&(identical(other.logo, logo) || other.logo == logo)&&const DeepCollectionEquality().equals(other.metadata, metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,slug,createdAt,const DeepCollectionEquality().hash(members),const DeepCollectionEquality().hash(invitations),logo,metadata);
+int get hashCode => Object.hash(runtimeType,id,name,slug,createdAt,const DeepCollectionEquality().hash(members),const DeepCollectionEquality().hash(invitations),logo,const DeepCollectionEquality().hash(metadata));
 
 @override
 String toString() {
@@ -48,7 +48,7 @@ abstract mixin class $FullOrganizationCopyWith<$Res>  {
   factory $FullOrganizationCopyWith(FullOrganization value, $Res Function(FullOrganization) _then) = _$FullOrganizationCopyWithImpl;
 @useResult
 $Res call({
- String? id, String name, String slug, DateTime createdAt, List<Member> members, List<Invitation> invitations, String? logo, String? metadata
+ String? id, String name, String slug, DateTime createdAt, List<Member> members, List<Invitation> invitations, String? logo, Object? metadata
 });
 
 
@@ -74,8 +74,7 @@ as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: 
 as DateTime,members: null == members ? _self.members : members // ignore: cast_nullable_to_non_nullable
 as List<Member>,invitations: null == invitations ? _self.invitations : invitations // ignore: cast_nullable_to_non_nullable
 as List<Invitation>,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
-as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata ,
   ));
 }
 
@@ -160,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  String? metadata)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  Object? metadata)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FullOrganization() when $default != null:
 return $default(_that.id,_that.name,_that.slug,_that.createdAt,_that.members,_that.invitations,_that.logo,_that.metadata);case _:
@@ -181,7 +180,7 @@ return $default(_that.id,_that.name,_that.slug,_that.createdAt,_that.members,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  String? metadata)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  Object? metadata)  $default,) {final _that = this;
 switch (_that) {
 case _FullOrganization():
 return $default(_that.id,_that.name,_that.slug,_that.createdAt,_that.members,_that.invitations,_that.logo,_that.metadata);case _:
@@ -201,7 +200,7 @@ return $default(_that.id,_that.name,_that.slug,_that.createdAt,_that.members,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  String? metadata)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String name,  String slug,  DateTime createdAt,  List<Member> members,  List<Invitation> invitations,  String? logo,  Object? metadata)?  $default,) {final _that = this;
 switch (_that) {
 case _FullOrganization() when $default != null:
 return $default(_that.id,_that.name,_that.slug,_that.createdAt,_that.members,_that.invitations,_that.logo,_that.metadata);case _:
@@ -238,7 +237,7 @@ class _FullOrganization implements FullOrganization {
 }
 
 @override final  String? logo;
-@override final  String? metadata;
+@override final  Object? metadata;
 
 /// Create a copy of FullOrganization
 /// with the given fields replaced by the non-null parameter values.
@@ -253,12 +252,12 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullOrganization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._invitations, _invitations)&&(identical(other.logo, logo) || other.logo == logo)&&(identical(other.metadata, metadata) || other.metadata == metadata));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FullOrganization&&(identical(other.id, id) || other.id == id)&&(identical(other.name, name) || other.name == name)&&(identical(other.slug, slug) || other.slug == slug)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&const DeepCollectionEquality().equals(other._members, _members)&&const DeepCollectionEquality().equals(other._invitations, _invitations)&&(identical(other.logo, logo) || other.logo == logo)&&const DeepCollectionEquality().equals(other.metadata, metadata));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,name,slug,createdAt,const DeepCollectionEquality().hash(_members),const DeepCollectionEquality().hash(_invitations),logo,metadata);
+int get hashCode => Object.hash(runtimeType,id,name,slug,createdAt,const DeepCollectionEquality().hash(_members),const DeepCollectionEquality().hash(_invitations),logo,const DeepCollectionEquality().hash(metadata));
 
 @override
 String toString() {
@@ -273,7 +272,7 @@ abstract mixin class _$FullOrganizationCopyWith<$Res> implements $FullOrganizati
   factory _$FullOrganizationCopyWith(_FullOrganization value, $Res Function(_FullOrganization) _then) = __$FullOrganizationCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String name, String slug, DateTime createdAt, List<Member> members, List<Invitation> invitations, String? logo, String? metadata
+ String? id, String name, String slug, DateTime createdAt, List<Member> members, List<Invitation> invitations, String? logo, Object? metadata
 });
 
 
@@ -299,8 +298,7 @@ as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: 
 as DateTime,members: null == members ? _self._members : members // ignore: cast_nullable_to_non_nullable
 as List<Member>,invitations: null == invitations ? _self._invitations : invitations // ignore: cast_nullable_to_non_nullable
 as List<Invitation>,logo: freezed == logo ? _self.logo : logo // ignore: cast_nullable_to_non_nullable
-as String?,metadata: freezed == metadata ? _self.metadata : metadata // ignore: cast_nullable_to_non_nullable
-as String?,
+as String?,metadata: freezed == metadata ? _self.metadata : metadata ,
   ));
 }
 

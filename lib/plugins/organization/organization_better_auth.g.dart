@@ -19,7 +19,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
 
   final ParseErrorLogger? errorLogger;
 
-  Future<HttpResponse<OrganizationResponse>> _createOrganization({
+  Future<HttpResponse<Organization>> _createOrganization({
     required String name,
     required String slug,
     String? logo,
@@ -36,7 +36,7 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
       'metadata': metadata,
     };
     _data.removeWhere((k, v) => v == null);
-    final _options = _setStreamType<Result<OrganizationResponse>>(
+    final _options = _setStreamType<Result<Organization>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -47,9 +47,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late OrganizationResponse _value;
+    late Organization _value;
     try {
-      _value = OrganizationResponse.fromJson(_result.data!);
+      _value = Organization.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -59,13 +59,13 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<OrganizationResponse>> createOrganization({
+  Future<Result<Organization>> createOrganization({
     required String name,
     required String slug,
     String? logo,
     Map<String, dynamic>? metadata,
   }) {
-    return BetterAuthCallAdapter<OrganizationResponse>().adapt(
+    return BetterAuthCallAdapter<Organization>().adapt(
       () => _createOrganization(
         name: name,
         slug: slug,

@@ -15,7 +15,7 @@ abstract class FullOrganization with _$FullOrganization {
     required List<Member> members,
     required List<Invitation> invitations,
     String? logo,
-    String? metadata,
+    Object? metadata,
   }) = _FullOrganization;
 
   factory FullOrganization.fromJson(Map<String, dynamic> json) =>

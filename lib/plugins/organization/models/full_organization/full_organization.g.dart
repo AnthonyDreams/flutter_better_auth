@@ -19,7 +19,7 @@ _FullOrganization _$FullOrganizationFromJson(Map<String, dynamic> json) =>
           .map((e) => Invitation.fromJson(e as Map<String, dynamic>))
           .toList(),
       logo: json['logo'] as String?,
-      metadata: json['metadata'] as String?,
+      metadata: json['metadata'],
     );
 
 Map<String, dynamic> _$FullOrganizationToJson(_FullOrganization instance) =>
