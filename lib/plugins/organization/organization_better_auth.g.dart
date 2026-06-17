@@ -557,14 +557,14 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
     );
   }
 
-  Future<HttpResponse<MemberResponse>> _setActiveOrganization({
+  Future<HttpResponse<Organization>> _setActiveOrganization({
     required String organizationId,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{'organizationId': organizationId};
-    final _options = _setStreamType<Result<MemberResponse>>(
+    final _options = _setStreamType<Result<Organization>>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -575,9 +575,9 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late MemberResponse _value;
+    late Organization _value;
     try {
-      _value = MemberResponse.fromJson(_result.data!);
+      _value = Organization.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -587,10 +587,10 @@ class _OrganizationBetterAuth implements OrganizationBetterAuth {
   }
 
   @override
-  Future<Result<MemberResponse>> setActiveOrganization({
+  Future<Result<Organization>> setActiveOrganization({
     required String organizationId,
   }) {
-    return BetterAuthCallAdapter<MemberResponse>().adapt(
+    return BetterAuthCallAdapter<Organization>().adapt(
       () => _setActiveOrganization(organizationId: organizationId),
     );
   }

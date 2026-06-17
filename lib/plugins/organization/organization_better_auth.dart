@@ -92,7 +92,7 @@ abstract class OrganizationBetterAuth {
   Future<Result<List<Invitation>>> listUserInvitations();
 
   @POST('/organization/set-active')
-  Future<Result<MemberResponse>> setActiveOrganization({
+  Future<Result<Organization>> setActiveOrganization({
     @BodyExtra('organizationId') required String organizationId,
   });
 
