@@ -1,11 +1,22 @@
 import 'package:dio/dio.dart';
 
 class RemoveNullsInterceptor extends Interceptor {
+  RemoveNullsInterceptor(String authBaseUrl)
+    : _authBase = Uri.parse(authBaseUrl);
+
+  final Uri _authBase;
+
+  bool _targetsAuth(Uri uri) =>
+      uri.scheme == _authBase.scheme &&
+      uri.host == _authBase.host &&
+      uri.port == _authBase.port &&
+      uri.path.startsWith(_authBase.path);
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final data = options.data;
 
-    if (data != null) {
+    if (data != null && _targetsAuth(options.uri)) {
       if (_canCallToJson(data)) {
         final json = (data as dynamic).toJson();
         options.data = _removeNullsFromMap(json);
